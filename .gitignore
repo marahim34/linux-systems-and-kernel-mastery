@@ -1,0 +1,47 @@
+# Linux Mastery Platform - Git Ignore
+
+# Ignore binary PDF books to keep git repository fast & within GitHub file limits
+*.pdf
+*.PDF
+
+# Build artifacts & executables
+bin/
+build/
+*.o
+*.ko
+*.mod
+*.mod.c
+*.mod.o
+*.order
+*.symvers
+*.cmd
+.tmp_versions/
+*.dwo
+*.su
+
+# Compiled system programming binaries
+code_examples/03_system_programming/01_copy_file
+code_examples/03_system_programming/02_process_tree
+code_examples/03_system_programming/03_signal_catcher
+code_examples/03_system_programming/04_thread_pool
+code_examples/03_system_programming/05_pipe_ipc
+code_examples/03_system_programming/06_shm_posix
+code_examples/03_system_programming/07_unix_domain_socket
+code_examples/03_system_programming/08_tcp_epoll_server
+code_examples/03_system_programming/09_mmap_file_indexer
+code_examples/04_kernel_modules/02_char_device/test_client
+code_examples/04_kernel_modules/mock_kernel/kernel_simulator
+
+# Temporary simulator workspaces & logs
+.simulator_runs/
+scratch/
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+!practice_data/*.log
+.DS_Store
+
+# Local SQLite databases (except seeded db if any)
+simulator/progress.db
+*.sqlite3

@@ -1,0 +1,6 @@
+root:x:0:0:Superuser:/root:/bin/bash
+aisha:x:1001:1001:Aisha Rahman:/home/aisha:/bin/bash
+mikko:x:1002:1002:Mikko Virtanen:/home/mikko:/bin/bash
+www-data:x:33:33:Web Server User:/var/www:/usr/sbin/nologin
+daemon:x:1:1:Daemon Process Account:/usr/sbin:/usr/sbin/nologin
+backup:x:34:34:Backup Admin:/var/backups:/bin/sh

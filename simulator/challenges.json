@@ -1,0 +1,735 @@
+[
+  {
+    "id": "grep_01",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Filter ERROR Logs",
+    "description": "Show all lines in app.log containing the string ERROR.",
+    "hint": "Use the standard grep command without any flags: grep PATTERN FILE",
+    "type": "bash",
+    "solution": "grep ERROR app.log",
+    "expected_lines": 5
+  },
+  {
+    "id": "grep_02",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Count Error Occurrences",
+    "description": "Count how many ERROR lines exist in app.log. Output only the count.",
+    "hint": "Use the -c count flag.",
+    "type": "bash",
+    "solution": "grep -c ERROR app.log",
+    "expected_output": "5"
+  },
+  {
+    "id": "grep_03",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Filter Multiple Levels with Extended Regex",
+    "description": "Show all ERROR and WARN lines together from app.log.",
+    "hint": "Use grep -E with the alternation operator | (pipe).",
+    "type": "bash",
+    "solution": "grep -E \"ERROR|WARN\" app.log",
+    "expected_lines": 8
+  },
+  {
+    "id": "grep_04",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Invert Match to Exclude Info",
+    "description": "Show all lines that are NOT INFO level in app.log.",
+    "hint": "Use the -v invert match flag.",
+    "type": "bash",
+    "solution": "grep -v INFO app.log",
+    "expected_lines": 8
+  },
+  {
+    "id": "grep_05",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Display Matches with Line Numbers",
+    "description": "Show lines in app.log containing ERROR prefixed with their line numbers.",
+    "hint": "Use the -n flag to prefix output with line numbers.",
+    "type": "bash",
+    "solution": "grep -n ERROR app.log",
+    "expected_lines": 5
+  },
+  {
+    "id": "grep_06",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Count HTTP 500 Internal Server Errors",
+    "description": "Count HTTP 500 errors in access.log. Ensure you match exact status code 500.",
+    "hint": "Use grep -c with spaces around 500: ' 500 '.",
+    "type": "bash",
+    "solution": "grep -c \" 500 \" access.log",
+    "expected_output": "3"
+  },
+  {
+    "id": "grep_07",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Identify Failed Logins",
+    "description": "Find all failed login attempts (HTTP status 401) in access.log.",
+    "hint": "Search for ' 401 ' in access.log.",
+    "type": "bash",
+    "solution": "grep \" 401 \" access.log",
+    "expected_lines": 3
+  },
+  {
+    "id": "grep_08",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Clean Server Config (No Comments or Blanks)",
+    "description": "Show only active configuration lines in server.conf (exclude lines starting with # and blank lines).",
+    "hint": "Use grep -Ev '^#|^$' to exclude comment and empty lines.",
+    "type": "bash",
+    "solution": "grep -Ev \"^#|^$\" server.conf",
+    "expected_lines": 7
+  },
+  {
+    "id": "grep_09",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Extract IP Addresses Only",
+    "description": "Extract only the IP addresses from access.log.",
+    "hint": "Use -o (only matching) and -E with regex ^[0-9.]+",
+    "type": "bash",
+    "solution": "grep -oE \"^[0-9.]+\" access.log",
+    "expected_lines": 20
+  },
+  {
+    "id": "grep_10",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Detect Web Probing Attacks",
+    "description": "Find suspicious requests containing admin or wp- in access.log.",
+    "hint": "Use grep -E 'admin|wp-' access.log",
+    "type": "bash",
+    "solution": "grep -E \"admin|wp-\" access.log",
+    "expected_lines": 3
+  },
+  {
+    "id": "grep_11",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Case-Insensitive Database Search",
+    "description": "Find all mentions of 'database' in app.log regardless of casing.",
+    "hint": "Use the -i flag.",
+    "type": "bash",
+    "solution": "grep -i database app.log",
+    "expected_lines": 4
+  },
+  {
+    "id": "grep_12",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Error Search with Context",
+    "description": "Show each ERROR line in app.log with 1 line of surrounding context before and after.",
+    "hint": "Use the -C 1 or -C1 flag.",
+    "type": "bash",
+    "solution": "grep -C1 ERROR app.log",
+    "expected_lines": 12
+  },
+  {
+    "id": "grep_13",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Find Bash Shell Users",
+    "description": "List all user records in users.txt that have /bin/bash as their shell.",
+    "hint": "Search for '/bin/bash' in users.txt.",
+    "type": "bash",
+    "solution": "grep \"/bin/bash\" users.txt",
+    "expected_lines": 3
+  },
+  {
+    "id": "grep_14",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Identify Service Accounts (nologin)",
+    "description": "Find all non-login service accounts in users.txt (containing nologin).",
+    "hint": "Use grep nologin users.txt.",
+    "type": "bash",
+    "solution": "grep nologin users.txt",
+    "expected_lines": 2
+  },
+  {
+    "id": "grep_15",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Count Attacker IP Requests",
+    "description": "Count the total number of requests originating from IP 203.0.113.7 in access.log.",
+    "hint": "Use grep -c with '203.0.113.7'.",
+    "type": "bash",
+    "solution": "grep -c \"203.0.113.7\" access.log",
+    "expected_output": "4"
+  },
+  {
+    "id": "sed_16",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Substitute Port Number",
+    "description": "Substitute port 8080 with port 9090 in server.conf (preview output without modifying original file).",
+    "hint": "sed 's/port 8080/port 9090/' server.conf",
+    "type": "bash",
+    "solution": "sed \"s/port 8080/port 9090/\" server.conf",
+    "must_contain": [
+      "port 9090"
+    ]
+  },
+  {
+    "id": "sed_18",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Delete Comment Lines",
+    "description": "Delete all lines starting with # from server.conf.",
+    "hint": "Use the d command with address /^#/: sed '/^#/d' server.conf",
+    "type": "bash",
+    "solution": "sed \"/^#/d\" server.conf",
+    "must_not_contain": [
+      "# Production Server"
+    ]
+  },
+  {
+    "id": "sed_19",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Strip Comments and Blank Lines",
+    "description": "Delete both comment lines and empty lines from server.conf in a single sed command.",
+    "hint": "Chain delete commands with semicolon: sed '/^#/d; /^$/d' server.conf",
+    "type": "bash",
+    "solution": "sed \"/^#/d; /^$/d\" server.conf",
+    "expected_lines": 7
+  },
+  {
+    "id": "sed_20",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Global Substitution of Log Level",
+    "description": "Replace every occurrence of 'info' with 'debug' in server.conf.",
+    "hint": "Use the g flag: sed 's/info/debug/g' server.conf",
+    "type": "bash",
+    "solution": "sed \"s/info/debug/g\" server.conf",
+    "must_contain": [
+      "log_level debug"
+    ]
+  },
+  {
+    "id": "sed_21",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Print Specific Line Range",
+    "description": "Print only lines 5 through 10 of app.log.",
+    "hint": "Suppress automatic printing with -n and use 5,10p: sed -n '5,10p' app.log",
+    "type": "bash",
+    "solution": "sed -n \"5,10p\" app.log",
+    "expected_lines": 6
+  },
+  {
+    "id": "sed_22",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Grep-Style Pattern Printing with Sed",
+    "description": "Print only the ERROR lines from app.log using sed.",
+    "hint": "Use sed -n '/ERROR/p' app.log",
+    "type": "bash",
+    "solution": "sed -n \"/ERROR/p\" app.log",
+    "expected_lines": 5
+  },
+  {
+    "id": "sed_23",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Replace Hostname with IP Address",
+    "description": "Change 'localhost' to '127.0.0.1' in server.conf.",
+    "hint": "sed 's/localhost/127.0.0.1/' server.conf",
+    "type": "bash",
+    "solution": "sed \"s/localhost/127.0.0.1/\" server.conf",
+    "must_contain": [
+      "db_host 127.0.0.1"
+    ]
+  },
+  {
+    "id": "sed_24",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Wrap Warning Tags",
+    "description": "Wrap all occurrences of WARN with *** WARN *** in app.log.",
+    "hint": "sed 's/WARN/*** WARN ***/' app.log",
+    "type": "bash",
+    "solution": "sed \"s/WARN/*** WARN ***/\" app.log",
+    "must_contain": [
+      "*** WARN ***"
+    ]
+  },
+  {
+    "id": "sed_25",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Extract Field by Stripping Suffix",
+    "description": "Extract only the username (text before the first colon) from users.txt.",
+    "hint": "Delete from the first colon to the end of line: sed 's/:.*//' users.txt",
+    "type": "bash",
+    "solution": "sed \"s/:.*//\" users.txt",
+    "expected_lines": 6
+  },
+  {
+    "id": "sed_26",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Custom Delimiters for Path Substitution",
+    "description": "In users.txt, replace /bin/bash with /bin/sh without backslash clutter.",
+    "hint": "Use pipe | as the delimiter: sed 's|/bin/bash|/bin/sh|g' users.txt",
+    "type": "bash",
+    "solution": "sed \"s|/bin/bash|/bin/sh|g\" users.txt",
+    "must_not_contain": [
+      "/bin/bash"
+    ]
+  },
+  {
+    "id": "sed_27",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Early Termination with Quit Command",
+    "description": "Show the first 5 lines of access.log using sed quit (5q).",
+    "hint": "sed '5q' access.log",
+    "type": "bash",
+    "solution": "sed \"5q\" access.log",
+    "expected_lines": 5
+  },
+  {
+    "id": "sed_28",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Comment Out Configuration Lines",
+    "description": "Add a '# ' comment marker before every line starting with 'port' in server.conf.",
+    "hint": "Anchor with ^: sed 's/^port/# port/' server.conf",
+    "type": "bash",
+    "solution": "sed \"s/^port/# port/\" server.conf",
+    "must_contain": [
+      "# port 8080"
+    ]
+  },
+  {
+    "id": "sed_29",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Squeeze Multiple Spaces",
+    "description": "Normalise whitespace in server.conf by squeezing multiple spaces into a single space.",
+    "hint": "sed 's/  */ /g' server.conf",
+    "type": "bash",
+    "solution": "sed \"s/  */ /g\" server.conf",
+    "expected_lines": 14
+  },
+  {
+    "id": "sed_30",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Back-Reference Format Inversion",
+    "description": "Turn 'port 8080' into '8080 is the port' in server.conf using regex back-references.",
+    "hint": "Use sed -E 's/port ([0-9]+)/\\1 is the port/' server.conf",
+    "type": "bash",
+    "solution": "sed -E \"s/port ([0-9]+)/\\1 is the port/\" server.conf",
+    "must_contain": [
+      "8080 is the port"
+    ]
+  },
+  {
+    "id": "awk_31",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Print Leading Field ($1)",
+    "description": "Print just the IP address (field 1) from every line of access.log.",
+    "hint": "awk '{print $1}' access.log",
+    "type": "bash",
+    "solution": "awk \"{print \\$1}\" access.log",
+    "expected_lines": 20
+  },
+  {
+    "id": "awk_32",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Extract Multiple Discontiguous Fields",
+    "description": "Print the HTTP status code (field 9) and byte size (field 10) from access.log separated by space.",
+    "hint": "awk '{print $9, $10}' access.log",
+    "type": "bash",
+    "solution": "awk \"{print \\$9, \\$10}\" access.log",
+    "expected_lines": 20
+  },
+  {
+    "id": "awk_33",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Filter Lines by Field Condition",
+    "description": "Print entire lines for requests in access.log that returned HTTP status 500.",
+    "hint": "awk '$9 == 500' access.log",
+    "type": "bash",
+    "solution": "awk \"\\$9 == 500\" access.log",
+    "expected_lines": 3
+  },
+  {
+    "id": "awk_34",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Custom Delimiter Field Extraction",
+    "description": "Print usernames (field 1) from the colon-separated users.txt file.",
+    "hint": "Use -F: flag: awk -F: '{print $1}' users.txt",
+    "type": "bash",
+    "solution": "awk -F: \"{print \\$1}\" users.txt",
+    "expected_lines": 6
+  },
+  {
+    "id": "awk_35",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Extract Full Names from Passwd Format",
+    "description": "Print the full name (field 5) of each user in users.txt.",
+    "hint": "awk -F: '{print $5}' users.txt",
+    "type": "bash",
+    "solution": "awk -F: \"{print \\$5}\" users.txt",
+    "expected_lines": 6
+  },
+  {
+    "id": "awk_36",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Parse CSV and Skip Header Line",
+    "description": "From employees.csv, print employee name (field 2) and salary (field 4), skipping the CSV header.",
+    "hint": "Use -F, and condition NR > 1: awk -F, 'NR>1 {print $2, $4}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"NR>1 {print \\$2, \\$4}\" employees.csv",
+    "expected_lines": 10
+  },
+  {
+    "id": "awk_37",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Calculate Total Sum Across File",
+    "description": "Sum the total number of bytes served (field 10) across all requests in access.log and print the total in END.",
+    "hint": "awk '{sum += $10} END {print sum}' access.log",
+    "type": "bash",
+    "solution": "awk \"{sum += \\$10} END {print sum}\" access.log",
+    "expected_output": "47018"
+  },
+  {
+    "id": "awk_38",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Compute Average Salary Across All Staff",
+    "description": "Calculate the average salary of all employees in employees.csv (skipping header).",
+    "hint": "awk -F, 'NR>1 {sum += $4; n++} END {print sum/n}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"NR>1 {sum += \\$4; n++} END {print sum/n}\" employees.csv",
+    "expected_output": "5008"
+  },
+  {
+    "id": "awk_39",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Filtered Group Average Calculation",
+    "description": "Find the average salary of the Engineering department only from employees.csv.",
+    "hint": "awk -F, '$3==\"Engineering\" {sum += $4; n++} END {print sum/n}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"\\$3==\\\"Engineering\\\" {sum += \\$4; n++} END {print sum/n}\" employees.csv",
+    "expected_output": "5960"
+  },
+  {
+    "id": "awk_40",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Group-by Count with Associative Arrays",
+    "description": "Count how many requests each IP made in access.log, then sort descending by count.",
+    "hint": "awk '{c[$1]++} END {for (ip in c) print c[ip], ip}' access.log | sort -rn",
+    "type": "bash",
+    "solution": "awk \"{c[\\$1]++} END {for (ip in c) print c[ip], ip}\" access.log | sort -rn",
+    "must_contain": [
+      "5 192.168.1.10"
+    ]
+  },
+  {
+    "id": "awk_41",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "HTTP Status Distribution",
+    "description": "Count how many times each HTTP status code appears in access.log, sorted descending.",
+    "hint": "awk '{c[$9]++} END {for (s in c) print c[s], s}' access.log | sort -rn",
+    "type": "bash",
+    "solution": "awk \"{c[\\$9]++} END {for (s in c) print c[s], s}\" access.log | sort -rn",
+    "must_contain": [
+      "10 200"
+    ]
+  },
+  {
+    "id": "awk_42",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Department Headcount Aggregation",
+    "description": "Count the number of employees in each department from employees.csv.",
+    "hint": "awk -F, 'NR>1 {c[$3]++} END {for (d in c) print d, c[d]}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"NR>1 {c[\\$3]++} END {for (d in c) print d, c[d]}\" employees.csv",
+    "must_contain": [
+      "Engineering 3"
+    ]
+  },
+  {
+    "id": "awk_43",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Group-by Sum per Category",
+    "description": "Sum the total salary paid per city in employees.csv.",
+    "hint": "awk -F, 'NR>1 {s[$5]+=$4} END {for (city in s) print city, s[city]}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"NR>1 {s[\\$5]+=\\$4} END {for (city in s) print city, s[city]}\" employees.csv",
+    "must_contain": [
+      "Tampere 20080"
+    ]
+  },
+  {
+    "id": "awk_44",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Compound Conditional Filtering",
+    "description": "Print employees earning more than 5000 from employees.csv (name and salary).",
+    "hint": "awk -F, 'NR>1 && $4>5000 {print $2, $4}' employees.csv",
+    "type": "bash",
+    "solution": "awk -F, \"NR>1 && \\$4>5000 {print \\$2, \\$4}\" employees.csv",
+    "expected_lines": 4
+  },
+  {
+    "id": "awk_45",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Log Level Counter",
+    "description": "Count occurrences of each log level (INFO, WARN, ERROR) in app.log in one command.",
+    "hint": "awk '{c[$3]++} END {for (l in c) print l, c[l]}' app.log",
+    "type": "bash",
+    "solution": "awk \"{c[\\$3]++} END {for (l in c) print l, c[l]}\" app.log",
+    "must_contain": [
+      "ERROR 5"
+    ]
+  },
+  {
+    "id": "awk_46",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Print Final Column Using $NF",
+    "description": "Print the last field of each access.log line (the byte count) using $NF.",
+    "hint": "awk '{print $NF}' access.log",
+    "type": "bash",
+    "solution": "awk \"{print \\$NF}\" access.log",
+    "expected_lines": 20
+  },
+  {
+    "id": "awk_47",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Filter by Numeric Threshold",
+    "description": "Show requests in access.log larger than 4000 bytes with their IP and size.",
+    "hint": "awk '$10 > 4000 {print $1, $10}' access.log",
+    "type": "bash",
+    "solution": "awk \"\\$10 > 4000 {print \\$1, \\$10}\" access.log",
+    "expected_lines": 4
+  },
+  {
+    "id": "awk_48",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Formatted Columnar Report with printf",
+    "description": "Format a clean report for 500 errors showing IP in 16-character column and status code.",
+    "hint": "awk '$9==500 {printf \"%-16s status %s\\n\", $1, $9}' access.log",
+    "type": "bash",
+    "solution": "awk \"\\$9==500 {printf \\\"%-16s status %s\\\\n\\\", \\$1, \\$9}\" access.log",
+    "expected_lines": 3
+  },
+  {
+    "id": "awk_49",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Compute Running Maximum",
+    "description": "Find the single largest response size (max bytes) in access.log.",
+    "hint": "awk '$10 > max {max = $10} END {print max}' access.log",
+    "type": "bash",
+    "solution": "awk \"\\$10 > max {max = \\$10} END {print max}\" access.log",
+    "expected_output": "15360"
+  },
+  {
+    "id": "awk_50",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Full Summary Report with Error Percentage",
+    "description": "Build a mini log summary from app.log reporting total lines, error count, and error rate percentage.",
+    "hint": "awk '/ERROR/{e++} {t++} END {printf \"Total:%d Errors:%d Rate:%.1f%%\\n\", t, e, e/t*100}' app.log",
+    "type": "bash",
+    "solution": "awk \"/ERROR/{e++} {t++} END {printf \\\"Total:%d Errors:%d Rate:%.1f%%\\\\n\\\", t, e, e/t*100}\" app.log",
+    "expected_output": "Total:15 Errors:5 Rate:33.3%"
+  },
+  {
+    "id": "combo_01",
+    "tier": "tier1",
+    "category": "combo",
+    "title": "Top 3 Talker IPs Pipeline",
+    "description": "Extract IPs with grep and pipe through sort, uniq, and head to display the top 3 requesting IPs.",
+    "hint": "grep -oE '^[0-9.]+' access.log | sort | uniq -c | sort -rn | head -3",
+    "type": "bash",
+    "solution": "grep -oE \"^[0-9.]+\" access.log | sort | uniq -c | sort -rn | head -3",
+    "expected_lines": 3
+  },
+  {
+    "id": "combo_02",
+    "tier": "tier1",
+    "category": "combo",
+    "title": "Deduplicate Error IPs",
+    "description": "Find all unique IPs that caused a 500 status code in access.log.",
+    "hint": "awk '$9==500 {print $1}' access.log | sort -u",
+    "type": "bash",
+    "solution": "awk \"\\$9==500 {print \\$1}\" access.log | sort -u",
+    "expected_lines": 2
+  },
+  {
+    "id": "combo_03",
+    "tier": "tier1",
+    "category": "combo",
+    "title": "Attacker Identification Pipeline",
+    "description": "Find the IP causing the most 403 or 404 responses and rank probe counts.",
+    "hint": "awk '$9==403 || $9==404 {print $1}' access.log | sort | uniq -c | sort -rn",
+    "type": "bash",
+    "solution": "awk \"\\$9==403 || \\$9==404 {print \\$1}\" access.log | sort | uniq -c | sort -rn",
+    "must_contain": [
+      "4 203.0.113.7"
+    ]
+  },
+  {
+    "id": "combo_04",
+    "tier": "tier1",
+    "category": "combo",
+    "title": "Clean and Mutate Configuration Pipeline",
+    "description": "Filter comments/blank lines with grep, then change log_level info to log_level debug with sed in one pipe.",
+    "hint": "grep -Ev '^#|^$' server.conf | sed 's/log_level info/log_level debug/'",
+    "type": "bash",
+    "solution": "grep -Ev \"^#|^$\" server.conf | sed \"s/log_level info/log_level debug/\"",
+    "must_contain": [
+      "log_level debug"
+    ]
+  },
+  {
+    "id": "combo_05",
+    "tier": "tier1",
+    "category": "combo",
+    "title": "Total Bytes per Status Code",
+    "description": "Report total bytes served per HTTP status code in access.log, sorted descending by bytes.",
+    "hint": "awk '{bytes[$9] += $10} END {for (s in bytes) print s, bytes[s]}' access.log | sort -rn",
+    "type": "bash",
+    "solution": "awk \"{bytes[\\$9] += \\$10} END {for (s in bytes) print s, bytes[s]}\" access.log | sort -rn",
+    "must_contain": [
+      "200 43835"
+    ]
+  },
+  {
+    "id": "sysprog_01",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Compile & Test Syscall File Copier",
+    "description": "Compile 01_copy_file.c and verify copying employees.csv to /tmp/copy_test.csv using open/read/write syscalls.",
+    "hint": "gcc code_examples/03_system_programming/01_copy_file.c -o copy_bin && ./copy_bin employees.csv /tmp/copy_test.csv",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra code_examples/03_system_programming/01_copy_file.c -o /tmp/copy_bin && /tmp/copy_bin employees.csv /tmp/copy_test.csv",
+    "must_contain": [
+      "Successfully copied"
+    ]
+  },
+  {
+    "id": "sysprog_02",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Process Lifecycle Tree Execution",
+    "description": "Compile and execute 02_process_tree.c to verify fork, execvp, and waitpid parent-child status synchronization.",
+    "hint": "gcc -Wall -Wextra code_examples/03_system_programming/02_process_tree.c -o /tmp/proc_bin && /tmp/proc_bin",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra code_examples/03_system_programming/02_process_tree.c -o /tmp/proc_bin && /tmp/proc_bin",
+    "must_contain": [
+      "Child PID=",
+      "exited normally with exit code=0"
+    ]
+  },
+  {
+    "id": "sysprog_03",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "POSIX Multithreaded Work Queue",
+    "description": "Compile and run 04_thread_pool.c with -pthread to verify concurrent task execution across 4 worker threads.",
+    "hint": "gcc -pthread code_examples/03_system_programming/04_thread_pool.c -o /tmp/pool_bin && /tmp/pool_bin",
+    "type": "bash",
+    "solution": "gcc -pthread -Wall -Wextra code_examples/03_system_programming/04_thread_pool.c -o /tmp/pool_bin && /tmp/pool_bin",
+    "must_contain": [
+      "All workers joined cleanly. Thread pool destroyed successfully."
+    ]
+  },
+  {
+    "id": "sysprog_04",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Anonymous Pipe Stream IPC",
+    "description": "Compile and run 05_pipe_ipc.c to test unidirectional kernel pipe buffer IPC between parent and child.",
+    "hint": "gcc code_examples/03_system_programming/05_pipe_ipc.c -o /tmp/pipe_bin && /tmp/pipe_bin",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra code_examples/03_system_programming/05_pipe_ipc.c -o /tmp/pipe_bin && /tmp/pipe_bin",
+    "must_contain": [
+      "Pipe IPC demonstration succeeded."
+    ]
+  },
+  {
+    "id": "sysprog_05",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "POSIX Shared Memory with Semaphores",
+    "description": "Compile and run 06_shm_posix.c using -lrt to verify synchronized shared memory mutation.",
+    "hint": "gcc -Wall -Wextra -pthread code_examples/03_system_programming/06_shm_posix.c -o /tmp/shm_bin -lrt && /tmp/shm_bin",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -pthread code_examples/03_system_programming/06_shm_posix.c -o /tmp/shm_bin -lrt && /tmp/shm_bin",
+    "must_contain": [
+      "Expected counter: 100, Actual counter: 100"
+    ]
+  },
+  {
+    "id": "sysprog_06",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Zero-Copy Memory-Mapped File Scanner",
+    "description": "Compile and run 09_mmap_file_indexer.c on employees.csv to scan memory without user-space read buffers.",
+    "hint": "gcc code_examples/03_system_programming/09_mmap_file_indexer.c -o /tmp/mmap_bin && /tmp/mmap_bin employees.csv",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra code_examples/03_system_programming/09_mmap_file_indexer.c -o /tmp/mmap_bin && /tmp/mmap_bin employees.csv",
+    "must_contain": [
+      "[mmap Indexer] File:",
+      "Line count : 11 lines"
+    ]
+  },
+  {
+    "id": "kernel_01",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "LKM Character Driver Simulator Run",
+    "description": "Run the kernel subsystem simulator to test char_dev.c file_operations lifecycle (open, write, read, release).",
+    "hint": "make -C code_examples/04_kernel_modules test",
+    "type": "bash",
+    "solution": "make -C code_examples/04_kernel_modules test",
+    "must_contain": [
+      "K-HARNESS VERDICT: PASS! Driver file_operations verified cleanly."
+    ]
+  },
+  {
+    "id": "kernel_02",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Kernel Memory & Buffer Transfer Check",
+    "description": "Verify user-kernel memory boundaries copy_to_user and copy_from_user via the simulated kernel harness.",
+    "hint": "code_examples/04_kernel_modules/mock_kernel/kernel_simulator",
+    "type": "bash",
+    "solution": "code_examples/04_kernel_modules/mock_kernel/kernel_simulator",
+    "must_contain": [
+      "Wrote 43 bytes to buffer",
+      "Read 43 bytes, new offset 43"
+    ]
+  }
+]

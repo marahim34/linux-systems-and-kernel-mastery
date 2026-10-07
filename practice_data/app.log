@@ -1,0 +1,15 @@
+2026-07-07 08:10:01 INFO Application boot completed on port 8080
+2026-07-07 08:11:15 INFO Connected to Database host localhost:5432
+2026-07-07 08:12:00 WARN High memory usage detected: 78% of heap
+2026-07-07 08:13:15 ERROR Failed to process request: timeout on /api/data
+2026-07-07 08:13:40 INFO Cache warmed with 450 keys
+2026-07-07 08:14:02 ERROR Database connection pool exhausted
+2026-07-07 08:14:30 WARN Retrying database connection in 5 seconds
+2026-07-07 08:15:00 INFO Connection pool restored with 10 slots
+2026-07-07 08:16:00 ERROR Internal error during payment settlement
+2026-07-07 08:17:05 ERROR Database transaction deadlock detected on orders table
+2026-07-07 08:18:20 WARN Slow query recorded: SELECT * FROM audit_logs
+2026-07-07 08:19:00 INFO Sync worker scheduled for hourly run
+2026-07-07 08:20:10 ERROR Search service unreachable: host 192.168.1.50:9200 down
+2026-07-07 08:21:00 INFO Health check passed for 4 worker nodes
+2026-07-07 08:22:00 INFO Graceful garbage collection completed in 42ms

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Mastery Engine · Zero to Kernel Hacker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-icon">🐧</div>
+        <div class="brand-text">
+          <span class="brand-title">LINUX MASTERY</span>
+          <span class="brand-subtitle">ZERO TO KERNEL HACKER</span>
+        </div>
+      </div>
+
+      <div class="user-stats" id="user-stats-bar">
+        <div class="stat-pill">
+          <span class="pill-label">RANK</span>
+          <span class="pill-value rank-text" id="stat-rank">Terminal Initiate (L0)</span>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">COMPLETED</span>
+          <span class="pill-value" id="stat-completed">0 / 62</span>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">BADGES</span>
+          <span class="pill-value badge-count" id="stat-badges">0 🏆</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-reset-progress">Reset Progress</button>
+      </div>
+    </header>
+
+    <!-- MAIN APP LAYOUT -->
+    <div class="main-layout">
+      <!-- SIDEBAR TABS -->
+      <aside class="sidebar">
+        <div class="nav-section-title">DOJO NAVIGATION</div>
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="challenges">
+            <span class="icon">🎯</span> Practice Challenges
+          </button>
+          <button class="nav-item" data-tab="sandbox">
+            <span class="icon">⚡</span> Live Terminal Sandbox
+          </button>
+          <button class="nav-item" data-tab="curriculum">
+            <span class="icon">📚</span> Curriculum Library
+          </button>
+          <button class="nav-item" data-tab="datasets">
+            <span class="icon">📁</span> Practice Datasets
+          </button>
+          <button class="nav-item" data-tab="kernel">
+            <span class="icon">⚙️</span> Kernel Subsystem Harness
+          </button>
+          <button class="nav-item" data-tab="badges">
+            <span class="icon">🏆</span> Badges & Mastery
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="footer-title">STUDY SERIES 2026</div>
+          <div class="footer-author">Prepared for MD Abdur Rahim</div>
+          <div class="footer-status"><span class="status-dot"></span> Kernel 7.0.0 Online</div>
+        </div>
+      </aside>
+
+      <!-- CONTENT PANELS -->
+      <main class="content-panel">
+        
+        <!-- TAB 1: PRACTICE CHALLENGES -->
+        <section id="tab-challenges" class="tab-pane active">
+          <div class="split-pane">
+            <!-- LEFT: CHALLENGE LIST -->
+            <div class="pane-sidebar">
+              <div class="pane-header">
+                <h3>CHALLENGES</h3>
+                <div class="filter-group">
+                  <select id="filter-tier" class="form-select">
+                    <option value="">All Tiers</option>
+                    <option value="tier1">Tier 1: Bash & Text</option>
+                    <option value="tier3">Tier 3: C Systems</option>
+                    <option value="tier4">Tier 4: Kernel Dev</option>
+                  </select>
+                  <select id="filter-cat" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="grep">Grep (1-15)</option>
+                    <option value="sed">Sed (16-30)</option>
+                    <option value="awk">Awk (31-50)</option>
+                    <option value="combo">Combos</option>
+                    <option value="c_systems">C Systems</option>
+                    <option value="kernel">Kernel Drivers</option>
+                  </select>
+                </div>
+              </div>
+              <div class="challenge-list" id="challenge-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <!-- RIGHT: CHALLENGE WORKSPACE -->
+            <div class="pane-main">
+              <div id="challenge-detail" class="challenge-workspace">
+                <div class="empty-state">
+                  <div class="empty-icon">👈</div>
+                  <h3>Select a challenge from the list</h3>
+                  <p>Choose any challenge to view instructions, practice files, and start coding!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: LIVE TERMINAL SANDBOX -->
+        <section id="tab-sandbox" class="tab-pane">
+          <div class="terminal-container">
+            <div class="terminal-header">
+              <div class="term-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="term-title">sandbox@linux-mastery:~ (Real Isolated Bash Environment)</div>
+            </div>
+            <div class="sandbox-controls">
+              <div class="input-row">
+                <span class="prompt-prefix">$</span>
+                <input type="text" id="sandbox-cmd-input" placeholder="Type bash command (e.g. ls -la, awk -F, '{print $2}' employees.csv, cat server.conf)..." autocomplete="off" />
+                <button class="btn btn-primary" id="btn-run-sandbox">Execute</button>
+              </div>
+            </div>
+            <div class="terminal-body" id="sandbox-terminal-out">
+Welcome to the Linux Mastery Sandbox!
+All 5 practice datasets (access.log, app.log, employees.csv, server.conf, users.txt) are pre-loaded in this directory.
+Try running:
+  $ cat employees.csv
+  $ grep ERROR app.log
+  $ awk -F, 'NR>1 {sum+=$4} END {print sum/NR}' employees.csv
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: CURRICULUM LIBRARY -->
+        <section id="tab-curriculum" class="tab-pane">
+          <div class="curriculum-container">
+            <div class="curriculum-sidebar" id="curriculum-tree">
+              <!-- Dynamically populated chapters -->
+            </div>
+            <div class="curriculum-viewer" id="curriculum-viewer">
+              <div class="markdown-body" id="curriculum-content">
+                <h2>Welcome to the Linux Mastery Knowledge Base</h2>
+                <p>Select any guide or chapter on the left to read deep theoretical models, system call references, and kernel architecture diagrams.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: PRACTICE DATASETS -->
+        <section id="tab-datasets" class="tab-pane">
+          <div class="datasets-container">
+            <div class="dataset-tabs" id="dataset-tabs">
+              <!-- Tabs for access.log, app.log, employees.csv, etc. -->
+            </div>
+            <div class="dataset-viewer">
+              <div class="dataset-meta" id="dataset-meta"></div>
+              <pre class="dataset-code" id="dataset-content"></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: KERNEL HARNESS -->
+        <section id="tab-kernel" class="tab-pane">
+          <div class="kernel-dojo-container">
+            <div class="kernel-card">
+              <h2>⚙️ Linux Kernel Subsystem Simulator (Safe User-Space Harness)</h2>
+              <p>Practice writing and testing Loadable Kernel Modules (LKMs), character device drivers, and user-kernel memory copies safely without needing root privileges or risking system freezes.</p>
+              
+              <div class="kernel-actions">
+                <button class="btn btn-primary" id="btn-run-kernel-sim">Run Kernel Simulator Test</button>
+                <button class="btn btn-secondary" id="btn-build-sysprog">Build & Test C System Programming Suite</button>
+              </div>
+
+              <div class="terminal-container" style="margin-top: 20px;">
+                <div class="terminal-header">
+                  <div class="term-dots">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  </div>
+                  <div class="term-title">dmesg & Kernel Simulator Output</div>
+                </div>
+                <div class="terminal-body" id="kernel-console-out">
+Ready to run kernel simulation. Click "Run Kernel Simulator Test" to execute.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: BADGES & MASTERY -->
+        <section id="tab-badges" class="tab-pane">
+          <div class="badges-container">
+            <h2>🏆 Mastery Achievements & Badges</h2>
+            <div class="badges-grid" id="badges-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
