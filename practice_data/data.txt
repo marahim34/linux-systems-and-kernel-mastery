@@ -1,0 +1,6 @@
+Smith, John 03-4567
+Virtanen, Matti 03-5123
+Salminen, Laura 03-2489
+Korhonen, Eero 03-6789
+Aaltonen, Pekka 03-4122
+Nieminen, Anna 03-1234

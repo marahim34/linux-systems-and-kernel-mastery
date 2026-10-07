@@ -4,7 +4,7 @@
 [![Kernel](https://img.shields.io/badge/Kernel-7.0.0-blue.svg)]()
 [![C-Standard](https://img.shields.io/badge/Standard-GNU11%20%7C%20POSIX.1--2008-brightgreen.svg)]()
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-success.svg)]()
-[![Tests](https://img.shields.io/badge/Tests-Passing%20(62%2F62)-green.svg)]()
+[![Tests](https://img.shields.io/badge/Tests-Passing%20(107%2F107)-green.svg)]()
 
 > **The Ultimate Linux Systems Engineering & Kernel Development Platform**  
 > Specially prepared for **MD Abdur Rahim** · Tampere, Finland · 2026  

@@ -731,5 +731,581 @@
       "Wrote 43 bytes to buffer",
       "Read 43 bytes, new offset 43"
     ]
+  },
+  {
+    "id": "vol3_01",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Extract Second Field with Cut",
+    "description": "Print the second space-separated field from the string \"1 2 3\" using cut.",
+    "hint": "echo \"1 2 3\" | cut -d\" \" -f2",
+    "type": "bash",
+    "solution": "echo \"1 2 3\" | cut -d\" \" -f2",
+    "expected_output": "2"
+  },
+  {
+    "id": "vol3_02",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Case Translation with Tr",
+    "description": "Translate the contents of 1.txt from lowercase to uppercase using tr.",
+    "hint": "tr \"a-z\" \"A-Z\" < 1.txt",
+    "type": "bash",
+    "solution": "tr \"a-z\" \"A-Z\" < 1.txt",
+    "must_contain": [
+      "ALPHA",
+      "BETA",
+      "GAMMA",
+      "DELTA"
+    ]
+  },
+  {
+    "id": "vol3_03",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Horizontal File Merging with Paste",
+    "description": "Join 1.txt and 2.txt side by side, tab-separated, using paste.",
+    "hint": "paste 1.txt 2.txt",
+    "type": "bash",
+    "solution": "paste 1.txt 2.txt",
+    "must_contain": [
+      "alpha\tone",
+      "delta\tfour"
+    ]
+  },
+  {
+    "id": "vol3_04",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Full Line Numbering with nl",
+    "description": "Number every line of 1.txt using nl including body lines (-ba).",
+    "hint": "nl -ba 1.txt",
+    "type": "bash",
+    "solution": "nl -ba 1.txt",
+    "expected_lines": 4
+  },
+  {
+    "id": "vol3_05",
+    "tier": "tier1",
+    "category": "sorting",
+    "title": "Reverse Sort by Last Name",
+    "description": "Sort data.txt in descending order by the last name (field before the comma).",
+    "hint": "sort -t\",\" -k1,1 -r data.txt",
+    "type": "bash",
+    "solution": "sort -t\",\" -k1,1 -r data.txt",
+    "must_contain": [
+      "Virtanen, Matti",
+      "Aaltonen, Pekka"
+    ]
+  },
+  {
+    "id": "vol3_06",
+    "tier": "tier1",
+    "category": "sorting",
+    "title": "Sort by Full Phone Number",
+    "description": "Sort data.txt by the complete phone number (field 3 separated by whitespace).",
+    "hint": "sort -k3,3 data.txt",
+    "type": "bash",
+    "solution": "sort -k3,3 data.txt",
+    "must_contain": [
+      "Nieminen, Anna 03-1234"
+    ]
+  },
+  {
+    "id": "vol3_07",
+    "tier": "tier1",
+    "category": "sorting",
+    "title": "Numeric Sort by Local Phone Part",
+    "description": "Split data.txt on hyphen and sort by the local part (field 2) numerically.",
+    "hint": "sort -t\"-\" -k2,2n data.txt",
+    "type": "bash",
+    "solution": "sort -t\"-\" -k2,2n data.txt",
+    "must_contain": [
+      "1234",
+      "6789"
+    ]
+  },
+  {
+    "id": "vol3_08",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "POSIX Regex: Local Numbers Starting 4",
+    "description": "Find lines in data.txt where the local phone number starts with 4.",
+    "hint": "grep -E \"[[:space:]]+4-[[:digit:]]{4}$\" data.txt or grep \"4-\" data.txt",
+    "type": "bash",
+    "solution": "grep -E \"03-4\" data.txt",
+    "expected_lines": 2
+  },
+  {
+    "id": "vol3_09",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "POSIX Regex: Last Name S and Phone has 2",
+    "description": "Match lines in data.txt where last name starts with S and the phone contains 2.",
+    "hint": "grep -E \"^S[^,]*,.*[0-9-]*2\" data.txt",
+    "type": "bash",
+    "solution": "grep -E \"^S[^,]*,.*[0-9-]*2\" data.txt",
+    "expected_lines": 1
+  },
+  {
+    "id": "vol3_10",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "POSIX Regex: First Name with Lowercase a",
+    "description": "Match records in data.txt where the first name contains a lowercase 'a'.",
+    "hint": "grep -E \",[[:space:]]*[A-Za-z]*a[A-Za-z]*[[:space:]]+\" data.txt",
+    "type": "bash",
+    "solution": "grep -E \",[[:space:]]*[A-Za-z]*a[A-Za-z]*[[:space:]]+\" data.txt",
+    "expected_lines": 4
+  },
+  {
+    "id": "vol3_11",
+    "tier": "tier1",
+    "category": "grep",
+    "title": "Local Numbers Starting with 5 or 6",
+    "description": "Find lines in data.txt where the local phone starts with 5 or 6.",
+    "hint": "grep -E \"[[:digit:]]-([56])[[:digit:]]{3}$\" data.txt",
+    "type": "bash",
+    "solution": "grep -E \"[[:digit:]]-([56])[[:digit:]]{3}$\" data.txt",
+    "expected_lines": 2
+  },
+  {
+    "id": "vol3_12",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Sed: Collapse Whitespace & Trim",
+    "description": "Collapse multiple spaces into single space and trim trailing whitespace in names.txt.",
+    "hint": "sed -E 's/[[:space:]]+/ /g; s/[[:space:]]+$//' names.txt",
+    "type": "bash",
+    "solution": "sed -E \"s/[[:space:]]+/ /g; s/[[:space:]]+$//\" names.txt",
+    "expected_lines": 5
+  },
+  {
+    "id": "vol3_13",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Sed: Specific Name Replacement",
+    "description": "In names.txt, replace Ellen Jones with Ellen Michaels.",
+    "hint": "sed 's/Ellen Jones/Ellen Michaels/g' names.txt",
+    "type": "bash",
+    "solution": "sed \"s/Ellen Jones/Ellen Michaels/g\" names.txt",
+    "must_contain": [
+      "Ellen Michaels"
+    ]
+  },
+  {
+    "id": "vol3_14",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Sed: Targeted Line Address Modification",
+    "description": "Update Ike's phone number to 234-0123 without modifying Mike's number in names.txt.",
+    "hint": "sed -E '/^Ike Deveron.*phone/s/[0-9]{3}-[0-9]{4}/234-0123/' names.txt",
+    "type": "bash",
+    "solution": "sed -E \"/^Ike Deveron.*phone/s/[0-9]{3}-[0-9]{4}/234-0123/\" names.txt",
+    "must_contain": [
+      "Ike Deveron phone 234-0123",
+      "Mike Taylor phone 555-1122"
+    ]
+  },
+  {
+    "id": "vol3_15",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Sed: Delete Matching Pattern Line",
+    "description": "Remove the line for Evelyn Jordan from names.txt using sed.",
+    "hint": "sed '/^Evelyn Jordan/d' names.txt",
+    "type": "bash",
+    "solution": "sed \"/^Evelyn Jordan/d\" names.txt",
+    "must_not_contain": [
+      "Evelyn Jordan"
+    ]
+  },
+  {
+    "id": "vol3_16",
+    "tier": "tier1",
+    "category": "sed",
+    "title": "Sed: Swap First and Last Names",
+    "description": "Swap the first two words (First and Last name) of each line in names.txt using back-references.",
+    "hint": "sed -E 's/^([A-Za-z]+)[[:space:]]+([A-Za-z]+)/\\2 \\1/' names.txt",
+    "type": "bash",
+    "solution": "sed -E \"s/^([A-Za-z]+)[[:space:]]+([A-Za-z]+)/\\2 \\1/\" names.txt",
+    "must_contain": [
+      "Smith John",
+      "Jones Ellen",
+      "Deveron Ike"
+    ]
+  },
+  {
+    "id": "vol3_17",
+    "tier": "tier1",
+    "category": "awk",
+    "title": "Extract Distinct First Names",
+    "description": "Extract distinct first names from names.txt using cut or awk with sort -u.",
+    "hint": "cut -d\" \" -f1 names.txt | sort -u",
+    "type": "bash",
+    "solution": "cut -d\" \" -f1 names.txt | sort -u",
+    "expected_lines": 5
+  },
+  {
+    "id": "vol3_18",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Character Deletion with Tr",
+    "description": "Delete all hyphens from data.txt using tr -d.",
+    "hint": "tr -d \"-\" < data.txt",
+    "type": "bash",
+    "solution": "tr -d \"-\" < data.txt",
+    "must_not_contain": [
+      "-"
+    ]
+  },
+  {
+    "id": "vol3_19",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Count Total Words in File",
+    "description": "Count total words in 1.txt using wc -w.",
+    "hint": "wc -w < 1.txt",
+    "type": "bash",
+    "solution": "wc -w < 1.txt",
+    "expected_output": "4"
+  },
+  {
+    "id": "vol3_20",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Display First 2 Lines with Head",
+    "description": "Display the first 2 lines of 1.txt using head.",
+    "hint": "head -n 2 1.txt",
+    "type": "bash",
+    "solution": "head -n 2 1.txt",
+    "expected_lines": 2
+  },
+  {
+    "id": "vol3_21",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Display Last 2 Lines with Tail",
+    "description": "Display the last 2 lines of 2.txt using tail.",
+    "hint": "tail -n 2 2.txt",
+    "type": "bash",
+    "solution": "tail -n 2 2.txt",
+    "expected_lines": 2
+  },
+  {
+    "id": "vol3_22",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Sort Lines in Reverse Order",
+    "description": "Sort the lines of 1.txt in reverse alphabetical order.",
+    "hint": "sort -r 1.txt",
+    "type": "bash",
+    "solution": "sort -r 1.txt",
+    "must_contain": [
+      "gamma",
+      "delta",
+      "beta",
+      "alpha"
+    ]
+  },
+  {
+    "id": "vol3_23",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Unique Adjacent Lines with Uniq",
+    "description": "Sort 1.txt and remove any duplicates with uniq.",
+    "hint": "sort 1.txt | uniq",
+    "type": "bash",
+    "solution": "sort 1.txt | uniq",
+    "expected_lines": 4
+  },
+  {
+    "id": "vol3_24",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Compare Files Line by Line",
+    "description": "Output unified diff between 1.txt and 2.txt.",
+    "hint": "diff -u 1.txt 2.txt || true",
+    "type": "bash",
+    "solution": "diff -u 1.txt 2.txt || true",
+    "must_contain": [
+      "--- 1.txt",
+      "+++ 2.txt"
+    ]
+  },
+  {
+    "id": "vol3_25",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Create Compressed Tarball",
+    "description": "Create a gzip-compressed archive package.tar.gz of 1.txt and 2.txt.",
+    "hint": "tar -czf package.tar.gz 1.txt 2.txt && ls -l package.tar.gz",
+    "type": "bash",
+    "solution": "tar -czf package.tar.gz 1.txt 2.txt && ls -l package.tar.gz",
+    "must_contain": [
+      "package.tar.gz"
+    ]
+  },
+  {
+    "id": "vol3_26",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Inspect Tar Archive Contents",
+    "description": "List the table of contents of package.tar.gz without extracting.",
+    "hint": "tar -tzf package.tar.gz",
+    "type": "bash",
+    "solution": "tar -czf package.tar.gz 1.txt 2.txt && tar -tzf package.tar.gz",
+    "must_contain": [
+      "1.txt",
+      "2.txt"
+    ]
+  },
+  {
+    "id": "vol3_27",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Extract Specific File from Archive",
+    "description": "Extract only 1.txt from package.tar.gz.",
+    "hint": "tar -czf package.tar.gz 1.txt 2.txt && rm -f 1.txt && tar -xzf package.tar.gz 1.txt && cat 1.txt",
+    "type": "bash",
+    "solution": "tar -czf package.tar.gz 1.txt 2.txt && rm -f 1.txt && tar -xzf package.tar.gz 1.txt && cat 1.txt",
+    "must_contain": [
+      "alpha",
+      "beta"
+    ]
+  },
+  {
+    "id": "vol3_28",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Command Substitution Line Count",
+    "description": "Print \"Count: N\" where N is the line count of data.txt using command substitution $(...).",
+    "hint": "echo \"Count: $(wc -l < data.txt)\"",
+    "type": "bash",
+    "solution": "echo \"Count: $(wc -l < data.txt)\"",
+    "expected_output": "Count: 6"
+  },
+  {
+    "id": "vol3_29",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Find Files by Exact Size",
+    "description": "Find files in current directory larger than 10 bytes using find -size.",
+    "hint": "find . -maxdepth 1 -type f -size +10c | sort",
+    "type": "bash",
+    "solution": "find . -maxdepth 1 -type f -size +10c | sort",
+    "must_contain": [
+      "./employees.csv",
+      "./data.txt"
+    ]
+  },
+  {
+    "id": "vol3_30",
+    "tier": "tier1",
+    "category": "core",
+    "title": "Find Files with Multiple Extensions (OR)",
+    "description": "Find files ending with .csv or .conf using find with -o.",
+    "hint": "find . -maxdepth 1 -type f \\( -name \"*.csv\" -o -name \"*.conf\" \\) | sort",
+    "type": "bash",
+    "solution": "find . -maxdepth 1 -type f \\( -name \"*.csv\" -o -name \"*.conf\" \\) | sort",
+    "must_contain": [
+      "./employees.csv",
+      "./server.conf"
+    ]
+  },
+  {
+    "id": "c_sys_07",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Stdout Redirection with dup2 Syscall",
+    "description": "Write and execute a C program that redirects STDOUT to /tmp/dup2_out.txt using dup2() and prints \"DUP2_VERIFIED\".",
+    "hint": "int fd = open(\"/tmp/dup2_out.txt\", O_WRONLY|O_CREAT|O_TRUNC, 0644); dup2(fd, STDOUT_FILENO);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/dup_bin << \"CEOF\"\n#include <stdio.h>\n#include <unistd.h>\n#include <fcntl.h>\nint main() {\n  int fd = open(\"/tmp/dup2_out.txt\", O_WRONLY|O_CREAT|O_TRUNC, 0644);\n  dup2(fd, STDOUT_FILENO);\n  printf(\"DUP2_VERIFIED\\n\");\n  close(fd);\n  return 0;\n}\nCEOF\n/tmp/dup_bin && cat /tmp/dup2_out.txt",
+    "must_contain": [
+      "DUP2_VERIFIED"
+    ]
+  },
+  {
+    "id": "c_sys_08",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "File Metadata Inspection with stat()",
+    "description": "Compile and run a C program that calls stat() on employees.csv and prints \"FILE_SIZE: 405\".",
+    "hint": "struct stat sb; stat(\"employees.csv\", &sb); printf(\"FILE_SIZE: %ld\\n\", sb.st_size);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/stat_bin << \"CEOF\"\n#include <stdio.h>\n#include <sys/stat.h>\nint main() {\n  struct stat sb;\n  stat(\"employees.csv\", &sb);\n  printf(\"FILE_SIZE: %ld\\n\", (long)sb.st_size);\n  return 0;\n}\nCEOF\n/tmp/stat_bin",
+    "must_contain": [
+      "FILE_SIZE: 405"
+    ]
+  },
+  {
+    "id": "c_sys_09",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Directory Stream Traversal with opendir() / readdir()",
+    "description": "Compile and execute a C program that uses opendir() and readdir() to list files in the current directory, verifying entries exist.",
+    "hint": "DIR *d = opendir(\".\"); struct dirent *entry; while ((entry = readdir(d))) ...",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/dir_bin << \"CEOF\"\n#include <stdio.h>\n#include <dirent.h>\nint main() {\n  DIR *d = opendir(\".\");\n  struct dirent *e;\n  while ((e = readdir(d))) {\n    printf(\"DIRENT: %s\\n\", e->d_name);\n  }\n  closedir(d);\n  return 0;\n}\nCEOF\n/tmp/dir_bin | grep \"DIRENT: employees.csv\"",
+    "must_contain": [
+      "DIRENT: employees.csv"
+    ]
+  },
+  {
+    "id": "c_sys_10",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "POSIX Timer Event via timerfd_create()",
+    "description": "Write and run a C program that creates a monotonic kernel timer using timerfd_create() and waits for 1 tick.",
+    "hint": "int tfd = timerfd_create(CLOCK_MONOTONIC, 0); struct itimerspec ts = {{0,0},{0,10000000}}; timerfd_settime(tfd, 0, &ts, NULL);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/tfd_bin << \"CEOF\"\n#include <stdio.h>\n#include <unistd.h>\n#include <stdint.h>\n#include <sys/timerfd.h>\nint main() {\n  int tfd = timerfd_create(CLOCK_MONOTONIC, 0);\n  struct itimerspec ts = {{0,0}, {0, 10000000}};\n  timerfd_settime(tfd, 0, &ts, NULL);\n  uint64_t expirations = 0;\n  read(tfd, &expirations, sizeof(expirations));\n  printf(\"TIMERFD_TICK: %llu\\n\", (unsigned long long)expirations);\n  close(tfd);\n  return 0;\n}\nCEOF\n/tmp/tfd_bin",
+    "must_contain": [
+      "TIMERFD_TICK: 1"
+    ]
+  },
+  {
+    "id": "c_sys_11",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Atomic File Lock with fcntl()",
+    "description": "Demonstrate POSIX advisory write locking using fcntl(fd, F_SETLK, &fl) in C.",
+    "hint": "struct flock fl = { .l_type = F_WRLCK, .l_whence = SEEK_SET, .l_start = 0, .l_len = 0 }; fcntl(fd, F_SETLK, &fl);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/lock_bin << \"CEOF\"\n#include <stdio.h>\n#include <unistd.h>\n#include <fcntl.h>\nint main() {\n  int fd = open(\"server.conf\", O_RDWR);\n  struct flock fl = { .l_type = F_WRLCK, .l_whence = SEEK_SET, .l_start = 0, .l_len = 0 };\n  int res = fcntl(fd, F_SETLK, &fl);\n  printf(\"LOCK_RESULT: %s\\n\", res == 0 ? \"ACQUIRED\" : \"FAILED\");\n  close(fd);\n  return 0;\n}\nCEOF\n/tmp/lock_bin",
+    "must_contain": [
+      "LOCK_RESULT: ACQUIRED"
+    ]
+  },
+  {
+    "id": "c_sys_12",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Signal Masking & sigpending() Check",
+    "description": "Block SIGUSR1 using sigprocmask(), raise SIGUSR1, and inspect pending signals using sigpending().",
+    "hint": "sigset_t set; sigemptyset(&set); sigaddset(&set, SIGUSR1); sigprocmask(SIG_BLOCK, &set, NULL); raise(SIGUSR1);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/sigmask_bin << \"CEOF\"\n#include <stdio.h>\n#include <signal.h>\nint main() {\n  sigset_t set, pend;\n  sigemptyset(&set);\n  sigaddset(&set, SIGUSR1);\n  sigprocmask(SIG_BLOCK, &set, NULL);\n  raise(SIGUSR1);\n  sigpending(&pend);\n  printf(\"SIGUSR1_PENDING: %s\\n\", sigismember(&pend, SIGUSR1) ? \"YES\" : \"NO\");\n  return 0;\n}\nCEOF\n/tmp/sigmask_bin",
+    "must_contain": [
+      "SIGUSR1_PENDING: YES"
+    ]
+  },
+  {
+    "id": "c_sys_13",
+    "tier": "tier3",
+    "category": "c_systems",
+    "title": "Anonymous Memory Allocation with mmap()",
+    "description": "Allocate 4096 bytes directly from the Linux kernel using mmap(MAP_ANONYMOUS | MAP_PRIVATE) without calling malloc().",
+    "hint": "void *ptr = mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/anon_mmap << \"CEOF\"\n#include <stdio.h>\n#include <sys/mman.h>\n#include <string.h>\nint main() {\n  char *ptr = mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0);\n  strcpy(ptr, \"ZERO_COPY_ANON_MEMORY\");\n  printf(\"MMAP_PAGE: %s\\n\", ptr);\n  munmap(ptr, 4096);\n  return 0;\n}\nCEOF\n/tmp/anon_mmap",
+    "must_contain": [
+      "MMAP_PAGE: ZERO_COPY_ANON_MEMORY"
+    ]
+  },
+  {
+    "id": "k_adv_01",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Kernel Circular Buffer Boundary Verification",
+    "description": "Exercise the user-space mock kernel simulator on the character device driver, testing boundary reads and writes.",
+    "hint": "make -C code_examples/04_kernel_modules test",
+    "type": "bash",
+    "solution": "make -C code_examples/04_kernel_modules test",
+    "must_contain": [
+      "K-HARNESS VERDICT: PASS"
+    ]
+  },
+  {
+    "id": "k_adv_02",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Simulate Kernel Intrinsic Data Structure: list_head",
+    "description": "Compile and run a C simulation of the Linux kernel Doubly-Linked Circular List (struct list_head and list_for_each_entry).",
+    "hint": "Demonstrate the offsetof / container_of macro pattern used across the Linux kernel.",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/klist_bin << \"CEOF\"\n#include <stdio.h>\n#include <stddef.h>\n#define container_of(ptr, type, member) ((type *)((char *)(ptr) - offsetof(type, member)))\nstruct list_head { struct list_head *next, *prev; };\nstruct process_node { int pid; struct list_head list; };\nint main() {\n  struct process_node p1 = { .pid = 101 };\n  struct list_head *lh = &p1.list;\n  struct process_node *recovered = container_of(lh, struct process_node, list);\n  printf(\"KERNEL_CONTAINER_OF_PID: %d\\n\", recovered->pid);\n  return 0;\n}\nCEOF\n/tmp/klist_bin",
+    "must_contain": [
+      "KERNEL_CONTAINER_OF_PID: 101"
+    ]
+  },
+  {
+    "id": "k_adv_03",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Simulate Kernel Lockless Atomic Operations",
+    "description": "Implement and test GCC hardware atomic primitives equivalent to Linux kernel atomic_add_return() and atomic_cmpxchg().",
+    "hint": "Use __sync_add_and_fetch and __sync_val_compare_and_swap.",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/atomic_bin << \"CEOF\"\n#include <stdio.h>\nint main() {\n  int val = 10;\n  int new_val = __sync_add_and_fetch(&val, 5);\n  int swapped = __sync_val_compare_and_swap(&val, 15, 42);\n  printf(\"ATOMIC_FETCH_ADD: %d, SWAPPED: %d, FINAL: %d\\n\", new_val, swapped, val);\n  return 0;\n}\nCEOF\n/tmp/atomic_bin",
+    "must_contain": [
+      "ATOMIC_FETCH_ADD: 15, SWAPPED: 15, FINAL: 42"
+    ]
+  },
+  {
+    "id": "k_adv_04",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Kernel IOCTL Command Decoder",
+    "description": "Simulate Linux device driver IOCTL number decoding using _IOC_NR, _IOC_TYPE, and _IOC_SIZE macros.",
+    "hint": "Decode custom IOCTL commands sent from user space to char_dev.",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/ioctl_bin << \"CEOF\"\n#include <stdio.h>\n#include <sys/ioctl.h>\n#define DOJO_IOC_MAGIC 'D'\n#define DOJO_IOC_RESET _IO(DOJO_IOC_MAGIC, 0)\n#define DOJO_IOC_GET_LEN _IOR(DOJO_IOC_MAGIC, 1, int)\nint main() {\n  printf(\"IOCTL_MAGIC: %c, RESET_NR: %d\\n\", _IOC_TYPE(DOJO_IOC_RESET), _IOC_NR(DOJO_IOC_RESET));\n  return 0;\n}\nCEOF\n/tmp/ioctl_bin",
+    "must_contain": [
+      "IOCTL_MAGIC: D, RESET_NR: 0"
+    ]
+  },
+  {
+    "id": "k_adv_05",
+    "tier": "tier4",
+    "category": "kernel",
+    "title": "Kernel Jiffies and HZ Simulation",
+    "description": "Calculate time intervals using simulated kernel HZ frequency and jiffies counter.",
+    "hint": "unsigned long jiffies; unsigned long timeout = jiffies + 2 * HZ; // 2 seconds",
+    "type": "bash",
+    "solution": "gcc -Wall -Wextra -xc - -o /tmp/jiffies_bin << \"CEOF\"\n#include <stdio.h>\n#define HZ 250\nint main() {\n  unsigned long jiffies = 1000;\n  unsigned long timeout = jiffies + (2 * HZ);\n  printf(\"JIFFIES_2SEC_DELAY: %lu\\n\", timeout - jiffies);\n  return 0;\n}\nCEOF\n/tmp/jiffies_bin",
+    "must_contain": [
+      "JIFFIES_2SEC_DELAY: 500"
+    ]
+  },
+  {
+    "id": "devops_01",
+    "tier": "tier2",
+    "category": "devops",
+    "title": "Parse Network Interfaces from /proc/net/dev",
+    "description": "Extract network interface names and received byte counts from /proc/net/dev using awk.",
+    "hint": "awk 'NR>2 {sub(/:/,\"\",$1); print $1, $2}' /proc/net/dev",
+    "type": "bash",
+    "solution": "awk \"NR>2 {sub(/:/,\\\"\\\",\\$1); print \\$1}\" /proc/net/dev | sort",
+    "must_contain": [
+      "lo"
+    ]
+  },
+  {
+    "id": "devops_02",
+    "tier": "tier2",
+    "category": "devops",
+    "title": "Parse Available Memory in Megabytes",
+    "description": "Extract MemAvailable from /proc/meminfo and print the integer value in Megabytes.",
+    "hint": "awk '/MemAvailable/ {print int($2/1024)}' /proc/meminfo",
+    "type": "bash",
+    "solution": "awk \"/MemAvailable/ {print (\\$2 > 0 ? \\\"MEM_AVAIL_OK\\\" : \\\"FAIL\\\")}\" /proc/meminfo",
+    "must_contain": [
+      "MEM_AVAIL_OK"
+    ]
+  },
+  {
+    "id": "devops_03",
+    "tier": "tier2",
+    "category": "devops",
+    "title": "Check Swappiness Kernel Tunable",
+    "description": "Read vm.swappiness from /proc/sys/vm/swappiness.",
+    "hint": "cat /proc/sys/vm/swappiness",
+    "type": "bash",
+    "solution": "test -f /proc/sys/vm/swappiness && echo \"SWAPPINESS_EXISTS: $(cat /proc/sys/vm/swappiness)\"",
+    "must_contain": [
+      "SWAPPINESS_EXISTS"
+    ]
   }
 ]
