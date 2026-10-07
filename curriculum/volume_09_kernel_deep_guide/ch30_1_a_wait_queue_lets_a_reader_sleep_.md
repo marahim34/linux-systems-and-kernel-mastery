@@ -1,0 +1,2 @@
+1. A wait queue lets a reader SLEEP until data is ready, instead of spinning or returning empty.
+2. wait_event_interruptible sleeps the calling process until the condition becomes true — efficiently yielding the CPU.

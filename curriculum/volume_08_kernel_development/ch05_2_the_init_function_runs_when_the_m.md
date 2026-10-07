@@ -1,0 +1,2 @@
+2. The INIT function runs when the module loads. __init tells the kernel it can free this code after init to save memory.
+3. printk logs a message; KERN_INFO is the priority level. Returning 0 means 'load succeeded'.

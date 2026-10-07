@@ -1,0 +1,58 @@
+[
+  {
+    "id": "q01",
+    "level": "Junior / Core",
+    "category": "Processes",
+    "question": "What is the difference between a process and a thread in Linux?",
+    "answer": "In Linux, a process has its own private address space (memory page tables, heap, globals), file descriptor table, and credentials. A thread is an execution context (created via clone() with CLONE_VM, CLONE_FS, CLONE_FILES flags) that shares the parent process's memory space and open descriptors, but retains its own execution stack, register state, and TID (Task ID). Under the Linux kernel, both are represented by struct task_struct; the kernel scheduler schedules 'tasks' regardless of whether they share memory."
+  },
+  {
+    "id": "q02",
+    "level": "Junior / Core",
+    "category": "Filesystems",
+    "question": "What is an Inode, and what happens when you delete a file that is currently held open by a running process?",
+    "answer": "An Inode (index node) is a kernel data structure on disk storing all file metadata (size, permissions, timestamps, owner, pointers to data blocks) except the filename. A directory entry (dentry) maps a filename string to an inode number. Each inode maintains a reference link counter (i_nlink). When you run 'rm', it decrements the link counter and unlinks the name. If a process still has the file open, the kernel holds an open file descriptor reference. The disk data blocks are NOT freed until the last open file descriptor is closed (or the process exits). You can verify this using 'lsof +L1'."
+  },
+  {
+    "id": "q03",
+    "level": "Intermediate / Sysadmin",
+    "category": "Memory",
+    "question": "What is the Linux Page Cache, and why does 'free -m' show high RAM usage even on an idle server?",
+    "answer": "Unused RAM is wasted RAM. Linux automatically utilizes free physical memory as a Page Cache to cache disk read and write blocks (dirty pages). When user applications demand more memory, the kernel immediately and transparently reclaims pages from the page cache. The true measure of available memory is 'MemAvailable' in /proc/meminfo, not 'free'."
+  },
+  {
+    "id": "q04",
+    "level": "Intermediate / Sysadmin",
+    "category": "Security",
+    "question": "What are SUID and SGID permissions, and why can SUID binaries be dangerous?",
+    "answer": "SUID (octal 4000) causes an executable to run with the permissions of the file's owner (often root) rather than the executing user (e.g. /usr/bin/passwd). SGID (2000) on files does the same for the group; on directories, it forces new files to inherit the parent directory's group ID. SUID binaries are high-risk attack surfaces: buffer overflows, environment variable injection (e.g. LD_PRELOAD), or path hijacking inside a root-owned SUID program can immediately yield a root shell."
+  },
+  {
+    "id": "q05",
+    "level": "Advanced / Systems",
+    "category": "Syscalls & I/O",
+    "question": "Why is epoll superior to select() and poll() for high-concurrency network servers (C10K)?",
+    "answer": "select() and poll() have O(N) complexity: on every single invocation, the application must copy an array of N file descriptors from user space into kernel space, and the kernel must iterate linearly through all N descriptors. In contrast, epoll creates an in-kernel interest list backed by a Red-Black tree. File descriptors are added once via epoll_ctl(). When network packets arrive, NIC hardware interrupts cause the kernel to add ready sockets to a ready doubly-linked list. epoll_wait() returns in O(1) time containing only descriptors with pending events."
+  },
+  {
+    "id": "q06",
+    "level": "Advanced / Systems",
+    "category": "Processes & IPC",
+    "question": "Explain Copy-on-Write (COW) during fork(), and what happens when the child process calls execve()?",
+    "answer": "When fork() is called, the kernel does not duplicate physical memory pages. Instead, it copies the parent's page table entries and marks all shared pages as read-only. Both parent and child read from the same physical RAM. If either process attempts to write to a page, a CPU Page Fault occurs; the kernel handles the fault by allocating a new physical page, copying the 4KB data, updating that process's page table with write permission, and resuming execution. If the child immediately calls execve(), the kernel simply discards the duplicated page table and loads the new ELF binary, avoiding massive memory copy overhead."
+  },
+  {
+    "id": "q07",
+    "level": "Kernel Hacker",
+    "category": "Kernel Subsystems",
+    "question": "Why can you never sleep or call copy_to_user() inside an Interrupt Handler (Top Half) or while holding a spinlock?",
+    "answer": "Interrupt Handlers execute in Interrupt Context, not Process Context. In interrupt context, there is no associated struct task_struct to put to sleep, no user context to switch from, and the scheduler cannot be invoked. Calling any function that might sleep (e.g., kmalloc with GFP_KERNEL, msleep, down_interruptible, or copy_to_user which might trigger a page fault needing disk swap) will cause a kernel panic or CPU hang. Spinlocks also disable preemption; sleeping while holding a spinlock results in deadlocks if another thread spins on the same lock on the same CPU."
+  },
+  {
+    "id": "q08",
+    "level": "Kernel Hacker",
+    "category": "Kernel Concurrency",
+    "question": "What is Read-Copy-Update (RCU) in the Linux kernel and how does it achieve lockless reads?",
+    "answer": "RCU separates read operations from updates. Readers enter an RCU critical section with rcu_read_lock(), which merely disables preemption (essentially zero cost, no memory bus locks, no cache-line invalidation). Readers safely dereference pointers with rcu_dereference(). Writers make modifications by copying the data structure, modifying the private copy, and atomically publishing the new pointer using rcu_assign_pointer(). The writer then waits for a 'grace period' (via synchronize_rcu() or asynchronously with call_rcu()) during which all CPUs undergo at least one context switch, guaranteeing that all preexisting readers have finished. The writer can then safely free the old data structure."
+  }
+]

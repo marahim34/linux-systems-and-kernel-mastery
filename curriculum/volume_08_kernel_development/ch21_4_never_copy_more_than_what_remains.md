@@ -1,0 +1,3 @@
+4. Never copy more than what remains or what was asked.
+5. copy_to_user safely moves kernel data INTO the user's buffer; it returns non-zero on failure...
+6. ...in which case we return -EFAULT (bad address). NEVER use memcpy to user pointers.

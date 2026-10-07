@@ -1,0 +1,6 @@
+3. Remove the 'dead' member...
+4. ...add the replacement...
+5. ...and watch the rebuild percentage climb. Data remained available throughout.
+# /etc/mdadm/mdadm.conf
+MAILADDR marahim34@gmail.com
+sudo mdadm --monitor --scan --test --oneshot

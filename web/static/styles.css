@@ -743,3 +743,276 @@ body {
   font-size: 40px;
   margin-bottom: 12px;
 }
+
+/* HERO CARDS */
+.hero-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.hero-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.hero-card:hover {
+  border-color: var(--accent-blue);
+  background-color: var(--bg-tertiary);
+  transform: translateY(-2px);
+}
+
+.hero-card h3 {
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: var(--accent-blue);
+  border: none;
+  padding: 0;
+}
+
+.hero-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+/* CURRICULUM TREE & SEARCH */
+.curriculum-search-box {
+  margin-bottom: 12px;
+}
+
+.curriculum-search-box input {
+  width: 100%;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.curriculum-search-box input:focus {
+  border-color: var(--accent-blue);
+}
+
+.curriculum-tree {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.vol-folder {
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  background-color: var(--bg-secondary);
+  overflow: hidden;
+}
+
+.vol-header {
+  padding: 10px 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 12px;
+  color: var(--text-primary);
+  background-color: var(--bg-tertiary);
+  transition: background 0.15s ease;
+}
+
+.vol-header:hover {
+  color: var(--accent-blue);
+}
+
+.vol-content {
+  display: none;
+  flex-direction: column;
+  padding: 4px 0;
+}
+
+.vol-content.open {
+  display: flex;
+}
+
+.ch-item {
+  padding: 6px 14px;
+  font-size: 12px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.ch-item:hover {
+  background-color: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+
+/* COMMAND REFERENCE */
+.cmd-ref-container {
+  padding: 24px 30px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.cmd-ref-header {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cmd-ref-header input {
+  max-width: 500px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 8px 14px;
+  font-size: 13px;
+  color: var(--text-primary);
+  outline: none;
+}
+
+.cmd-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 16px;
+}
+
+.cmd-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cmd-title {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-green);
+}
+
+.cmd-desc {
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.cmd-syntax {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background-color: var(--bg-primary);
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: var(--accent-blue);
+}
+
+.cmd-flags {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+.cmd-example {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background-color: #05070a;
+  padding: 6px 10px;
+  border-radius: 4px;
+  color: #38ef7d;
+}
+
+/* INTERVIEWS */
+.interviews-container {
+  padding: 24px 30px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.interview-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.interview-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 18px;
+}
+
+.interview-badge {
+  font-size: 10px;
+  font-family: var(--font-mono);
+  background-color: var(--accent-blue-bg);
+  color: var(--accent-blue);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+.interview-question {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--text-primary);
+}
+
+.interview-answer {
+  background-color: var(--bg-primary);
+  border-left: 3px solid var(--accent-green);
+  border-radius: 0 4px 4px 0;
+  padding: 14px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--text-primary);
+  margin-top: 10px;
+}
+
+/* ARCHITECTURE */
+.arch-container {
+  padding: 24px 30px;
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.arch-card {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.arch-card h3 {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--accent-blue);
+  margin-bottom: 12px;
+}
+
+.diagram-box {
+  background-color: #05070a;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 16px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #58a6ff;
+  line-height: 1.4;
+  overflow-x: auto;
+  white-space: pre;
+}

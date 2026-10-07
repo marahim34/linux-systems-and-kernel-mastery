@@ -1,0 +1,3 @@
+1. A plain shell variable — visible here...
+2. ...and readable with $.
+3. export makes EDITOR an ENVIRONMENT variable — now git, crontab, and other programs will use nano.

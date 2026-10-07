@@ -1,0 +1,3 @@
+1. Remember 50,000 commands in this session...
+2. ...and 100,000 on disk. Huge history is a searchable record of everything you have done.
+3. ignoreboth = ignore duplicate commands AND commands starting with a space (for secrets).

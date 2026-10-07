@@ -1,0 +1,3 @@
+2. The learning wizard: it watches what the app ACTUALLY does...
+3. ...and interviews you about each access. Exercise every feature (uploads, exports!) or the profile will block them in
+production.

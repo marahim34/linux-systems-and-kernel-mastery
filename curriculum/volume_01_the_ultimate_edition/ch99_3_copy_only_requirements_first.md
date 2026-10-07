@@ -1,0 +1,3 @@
+3. Copy ONLY requirements first...
+4. ...so this expensive layer is CACHED and re-runs only when requirements change — the single most important
+Dockerfile optimization.

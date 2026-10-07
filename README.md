@@ -1,14 +1,16 @@
-# 🐧 Linux Mastery: From Zero Command to Kernel Hacker
+# 🐧 Linux Mastery University: Zero to Kernel Hacker
 
 [![Platform](https://img.shields.io/badge/Platform-Linux%20Ubuntu%2024.04%20LTS-orange.svg)]()
 [![Kernel](https://img.shields.io/badge/Kernel-7.0.0-blue.svg)]()
+[![Curriculum](https://img.shields.io/badge/Curriculum-536%20Chapters-purple.svg)]()
+[![Challenges](https://img.shields.io/badge/Labs-107%20Interactive%20Labs-success.svg)]()
 [![C-Standard](https://img.shields.io/badge/Standard-GNU11%20%7C%20POSIX.1--2008-brightgreen.svg)]()
 [![Dependencies](https://img.shields.io/badge/Dependencies-Zero%20External-success.svg)]()
 [![Tests](https://img.shields.io/badge/Tests-Passing%20(107%2F107)-green.svg)]()
 
-> **The Ultimate Linux Systems Engineering & Kernel Development Platform**  
+> **The Definitive Linux Systems Engineering, Architecture & Kernel Development Platform**  
 > Specially prepared for **MD Abdur Rahim** · Tampere, Finland · 2026  
-> Synthesizing 20 canonical Linux texts, 9-volume mastery series, *The Linux Programming Interface* (Michael Kerrisk), *Linux Kernel Development* (Robert Love), and *Understanding the Linux Kernel* (Bovet & Cesati).
+> Synthesizing all **9 Volumes of the Linux Mastery Series**, Michael Kerrisk's *The Linux Programming Interface* (TLPI - 1556 pages), Robert Love's *Linux Kernel Development* (LKD), Bovet & Cesati's *Understanding the Linux Kernel* (ULK3), and the complete TAMK (Tampere University of Applied Sciences) Practice Guides.
 
 ---
 
@@ -16,88 +18,137 @@
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                       LINUX MASTERY ECOSYSTEM                               │
+│                   LINUX MASTERY UNIVERSITY ECOSYSTEM                        │
 └─────────────────────────────────────────────────────────────────────────────┘
           │                                                  │
           ▼                                                  ▼
 ┌────────────────────────────────┐         ┌──────────────────────────────────┐
-│      INTERACTIVE CLI / TUI     │         │       CYBER-DARK WEB APP         │
+│      INTERACTIVE CLI / TUI     │         │    FULL-FEATURED SINGLE PAGE APP │
 │  ./linux-mastery list/run/web  │         │  http://localhost:8080 (REST)    │
 └────────────────┬───────────────┘         └─────────────────┬────────────────┘
                  │                                           │
                  └─────────────────────┬─────────────────────┘
                                        ▼
 ┌─────────────────────────────────────────────────────────────────────────────┐
-│                      SIMULATOR & GRADING ENGINE                             │
-│  Isolated Sandbox · Timeout Guards · Strict Testing · SQLite Progress DB   │
+│                    ZERO-DEPENDENCY BACKEND & RUNTIME                        │
+│  Python 3 ThreadingHTTPServer · Isolated Subprocess Sandbox · SQLite DB     │
 └──────────────────────────────────────┬──────────────────────────────────────┘
                                        │
-         ┌─────────────────────────────┼─────────────────────────────┐
-         ▼                             ▼                             ▼
-┌──────────────────┐         ┌───────────────────┐         ┌──────────────────┐
-│  TIER 1 & 2:     │         │  TIER 3:          │         │  TIER 4:         │
-│  Bash, FHS, Sudo │         │  C Systems Code   │         │  Kernel Modules  │
-│  Grep/Sed/Awk    │         │  Syscalls, epoll  │         │  Char Drivers    │
-│  50 Graded Tasks │         │  Pthreads, IPC    │         │  Mock K-Harness  │
-└──────────────────┘         └───────────────────┘         └──────────────────┘
+     ┌───────────────────┬─────────────┴───────┬───────────────────┐
+     ▼                   ▼                     ▼                   ▼
+┌──────────────┐   ┌───────────────┐     ┌───────────────┐   ┌────────────────┐
+│ 536 CHAPTER  │   │ 107 GRADED    │     │ 55 COMMANDS & │   │ KERNEL DRIVER  │
+│ KNOWLEDGE    │   │ INTERACTIVE   │     │ INTERVIEW     │   │ & C SYSPROG    │
+│ LIBRARY      │   │ DOJO LABS     │     │ PREP DOJO     │   │ HARNESSES      │
+└──────────────┘   └───────────────┘     └───────────────┘   └────────────────┘
 ```
 
 ---
 
-## 🌟 Key Features
+## 🌟 Key Features & Platform Modules
 
-1. **Complete 4-Tier Master Curriculum**:
-   - **Tier 1 (Foundations & Shell Craft)**: File streams, redirections, FHS 3.0 hierarchy, user/group/shadow databases, sudoers grammar, and bash scripting strict mode.
-   - **Tier 2 (Systems Administration & DevOps)**: Storage (LVM, software RAID mdadm, LUKS encryption), advanced networking, systemd unit architecture, cgroups v2, and security auditing with auditd.
-   - **Tier 3 (Advanced Linux System Programming in C)**: Direct syscalls (`open`, `read`, `write`, `lseek`), process trees (`fork`, `execve`, `waitpid`), robust signal handling (`sigaction`, `SA_SIGINFO`), POSIX thread pools (`pthread_mutex_t`, `pthread_cond_t`), IPC (`pipe`, POSIX shared memory, semaphores, UNIX domain sockets), memory-mapped files (`mmap`), and high-performance event loops (`epoll`).
-   - **Tier 4 (Linux Kernel Programming & Subsystems)**: Loadable Kernel Modules (LKMs), character device drivers (`cdev`, `file_operations`), user-kernel memory isolation (`copy_to_user`, `copy_from_user`), concurrency (`spinlock_t`, `mutex`, RCU), bottom-half workqueues, and `/proc` virtual files.
-2. **50 Graded Text-Processing Tasks with Real Practice Datasets**:
-   - `access.log` (Apache webserver log)
-   - `app.log` (Application log with ERROR, WARN, INFO)
-   - `employees.csv` (10 employee records with salaries, departments, cities)
-   - `server.conf` (Production configuration with comments & blanks)
-   - `users.txt` (Passwd-style user database)
-3. **Safe User-Space Kernel Simulator Harness**:
-   - Compiles and tests kernel drivers with standard `gcc` without requiring root permissions or risking kernel panics.
-4. **Zero External Dependencies**:
-   - Built entirely on Python 3 standard library (`http.server`, `sqlite3`, `subprocess`, `urllib`) and GCC. No `pip install`, no `npm`, no setup headaches.
+### 1. 📚 9-Volume Curriculum & Canonical Reference Library (536 Markdown Chapters)
+Extracted, curated, and indexed into a searchable interactive tree viewer:
+- **Volume 01: The Ultimate Edition (151 chapters)**: Terminal survival, filesystem hierarchy, Vim mastery, processes, networking, bash scripting, permissions, and production deployments.
+- **Volume 02: Specialist Topics (63 chapters)**: In-depth storage (LVM, RAID, LUKS), systemd units, advanced networking, and security hardening.
+- **Volume 03: TAMK Practice Workbook (53 chapters)**: 60 worked lab exercises with solutions from Tampere University of Applied Sciences: directory navigation, globbing, redirections, archiving, and text tools.
+- **Volume 04: Internals & Architecture (35 chapters)**: Kernel subsystems, CFS CPU scheduler, virtual memory paging, page cache, VFS inodes, and direct syscall dispatch.
+- **Volume 05: Operating System Theory (25 chapters)**: Concurrency, race conditions, deadlocks, memory management, and file systems.
+- **Volume 06: Installing Software (32 chapters)**: Package managers (`dpkg`, `apt`, `rpm`, `dnf`), source builds (`autotools`, `cmake`, `make`), and containerization foundations.
+- **Volume 07: Bash Configuration & Scripting (49 chapters)**: Shell environments (`.bashrc`, `.bash_profile`), arrays, parameter expansions, signals, and debugging.
+- **Volume 08: Kernel Development Core (45 chapters)**: Loadable Kernel Modules, character drivers, `copy_to_user`/`copy_from_user`, device nodes, and kbuild Makefiles.
+- **Volume 09: Kernel Deep Subsystems (50 chapters)**: Interrupt handling (top-half & bottom-half workqueues), spinlocks, mutexes, RCU (Read-Copy Update), memory allocators (Buddy allocator & Slab cache), and the unified Linux Device Model.
+- **Specialist Guides**: Full guides on Grep/Sed/Awk Mastery, Linux Filesystem Hierarchy (FHS), Sudo Mastery, User/Group Management, and the Linux Job Hunting Guide for Finland.
+- **Michael Kerrisk: TLPI 64-Chapter Roadmap**: Detailed breakdown of the canonical 1556-page systems programming standard.
+- **Robert Love: LKD & Bovet: ULK3 Subsystems**: Kernel subsystem roadmap spanning memory management, process lifecycle, VFS, and driver frameworks.
+
+### 2. 🎯 Interactive Practice Dojo (107 Graded Labs)
+Automated testing and real-time grading against sandbox datasets:
+- **Grep (19 Labs)**: Case insensitivity, line numbering, inverted matching, counting, IP extraction, UUID validation, context lines (`-A`, `-B`, `-C`).
+- **Sed (19 Labs)**: In-place substitution, delimiter flexibility, line deletion, address ranges, uppercase transformations, and append/insert commands.
+- **Awk (22 Labs)**: Field extraction, condition filtering, sum/average aggregations, custom FS/OFS separators, associative arrays, status code groupings.
+- **Core & TAMK (20 Labs)**: Directory creation, hidden files, globbing patterns, file permissions (`chmod`, `chown`), symbolic/hard links, and tar archiving.
+- **Sorting & Archiving (7 Labs)**: Numeric sorting, reverse deduplication, column-based sorting, piping filters, and gzip compression.
+- **C Systems Programming (11 Modules)**: Direct file I/O syscalls, process trees (`fork`, `execve`, `waitpid`), signal handlers (`sigaction`), POSIX threads, IPC pipes, shared memory, and `epoll`.
+- **Kernel Drivers (6 Labs)**: Loadable kernel modules, character device drivers, read/write callbacks, spinlocks, and procfs interfaces.
+
+### 3. 📖 Comprehensive Linux Command Reference
+Quick search and cheat sheets for 55+ essential commands:
+- Includes full syntax, key options, and verified one-liner production examples for tools including `ls`, `grep`, `sed`, `awk`, `find`, `xargs`, `tar`, `chmod`, `chown`, `systemctl`, `journalctl`, `lsof`, `strace`, `ss`, `ip`, `ps`, `top`, `rsync`, `dd`, `curl`, and more.
+
+### 4. 🧠 Linux Technical Interview Preparation Dojo
+In-depth interview questions and detailed answers covering:
+- Process vs. Thread memory architectures.
+- Exact mechanics of the `syscall` CPU instruction and mode transitions (Ring 3 to Ring 0).
+- Linux page faults (minor vs. major) and demand paging.
+- Completely Fair Scheduler (CFS) and virtual runtime (`vruntime`).
+- Virtual Filesystem (VFS) object model (`super_block`, `inode`, `dentry`, `file`).
+- Read-Copy Update (RCU) vs. Spinlocks in kernel concurrent programming.
+- Hard links vs. Symbolic links at the inode level.
+- High-performance I/O multiplexing (`epoll` edge-triggered vs. level-triggered).
+
+### 5. 🏗️ Kernel & OS Architecture Visualizer
+ASCII architectural diagrams mapping:
+- The System Call Boundary (glibc -> register dispatch -> `sys_call_table` -> VFS -> drivers).
+- x86_64 48-bit Virtual Memory canonical layout (User Space bottom 128 TB vs. Kernel Space top 128 TB).
+- The VFS Object Model relationship hierarchy.
+
+### 6. 📁 Built-In Practice Datasets
+Realistic production datasets located in `practice_data/`:
+- `access.log` (Webserver traffic log)
+- `app.log` (Production application log with ERROR, WARN, INFO entries)
+- `employees.csv` (Employee department and salary records)
+- `server.conf` (Configuration file with comments and blank lines)
+- `users.txt` (System user database)
+- `data.txt`, `names.txt`, `1.txt`, `2.txt` (TAMK lab datasets)
+
+### 7. ⚙️ Safe User-Space Kernel Simulator Harness
+- Test character device driver logic (`open`, `release`, `read`, `write`, `copy_to_user`, `copy_from_user`) using GCC without requiring root privileges or risking kernel panics.
+
+### 8. ⚡ Zero External Dependencies
+- Requires only standard Python 3 (`http.server`, `sqlite3`, `subprocess`, `urllib`) and standard GCC build tools. Runs out of the box on any standard Linux distribution.
 
 ---
 
-## 🚀 Quick Start
+## 🚀 Quick Start Guide
 
-### 1. Launch the Interactive Web Platform
+### 1. Launch the Web Platform
 ```bash
+# Launch server on port 8080 (zero dependencies required)
 ./linux-mastery web --port 8080
-# Open http://localhost:8080 in your browser
-```
 
-### 2. Practice Challenges via the Command-Line Dojo
+# Or run directly via Python 3:
+python3 web/server.py 8080
+```
+Open your browser at **`http://localhost:8080`**.
+
+### 2. Practice Challenges via the Command-Line Dojo (CLI)
 ```bash
-# View dashboard & mastery rank
+# Show status dashboard and current rank
 ./linux-mastery
 
-# List challenges by category
+# List challenges by category or tier
 ./linux-mastery list --cat grep
 ./linux-mastery list --cat awk
+./linux-mastery list --cat core
 ./linux-mastery list --cat c_systems
 ./linux-mastery list --cat kernel
 
-# Inspect a challenge
-./linux-mastery show grep_02
+# Inspect challenge instructions
+./linux-mastery show grep_01
 
-# Run and grade your solution
-./linux-mastery run grep_02 "grep -c ERROR app.log"
+# Submit and verify your bash solution
+./linux-mastery run grep_01 "grep ERROR app.log"
 
-# Ask for a hint or reveal reference solution
-./linux-mastery hint grep_02
-./linux-mastery solution grep_02
+# Get a hint or reveal reference solution
+./linux-mastery hint grep_01
+./linux-mastery solution grep_01
 
-# View progress & earned badges
+# Inspect overall progress & badges
 ./linux-mastery status
 ```
 
-### 3. Build & Test C System Programming Suite
+### 3. Compile and Test C System Programming Modules
 ```bash
 make -C code_examples/03_system_programming test
 ```
@@ -107,43 +158,10 @@ make -C code_examples/03_system_programming test
 make -C code_examples/04_kernel_modules test
 ```
 
-### 5. Execute Full Platform Verification Suite
+### 5. Run the Automated Test Suite (107/107 Verification)
 ```bash
 make test
 ```
-
----
-
-## 📚 Curriculum Library Overview
-
-| Tier | Topic | Guide Path |
-|---|---|---|
-| **Tier 1** | Shell & Redirections | [`curriculum/tier1_core_and_bash/01_terminal_and_shell_foundations.md`](curriculum/tier1_core_and_bash/01_terminal_and_shell_foundations.md) |
-| **Tier 1** | Filesystem Hierarchy (FHS) | [`curriculum/tier1_core_and_bash/02_fhs_filesystem_hierarchy.md`](curriculum/tier1_core_and_bash/02_fhs_filesystem_hierarchy.md) |
-| **Tier 1** | Permissions & ACLs | [`curriculum/tier1_core_and_bash/03_permissions_ownership_acls.md`](curriculum/tier1_core_and_bash/03_permissions_ownership_acls.md) |
-| **Tier 1** | Users & Groups | [`curriculum/tier1_core_and_bash/04_user_group_management.md`](curriculum/tier1_core_and_bash/04_user_group_management.md) |
-| **Tier 1** | Sudo & Privilege | [`curriculum/tier1_core_and_bash/05_sudo_and_privilege.md`](curriculum/tier1_core_and_bash/05_sudo_and_privilege.md) |
-| **Tier 1** | Grep, Sed & Awk (50 Ex) | [`curriculum/tier1_core_and_bash/06_grep_sed_awk_complete_handbook.md`](curriculum/tier1_core_and_bash/06_grep_sed_awk_complete_handbook.md) |
-| **Tier 2** | Storage (LVM/RAID/LUKS) | [`curriculum/tier2_system_administration/01_storage_lvm_raid_luks.md`](curriculum/tier2_system_administration/01_storage_lvm_raid_luks.md) |
-| **Tier 2** | Systemd & Services | [`curriculum/tier2_system_administration/02_systemd_and_services.md`](curriculum/tier2_system_administration/02_systemd_and_services.md) |
-| **Tier 3** | Syscalls & Direct File I/O | [`curriculum/tier3_system_programming_c/01_system_calls_and_file_io.md`](curriculum/tier3_system_programming_c/01_system_calls_and_file_io.md) |
-| **Tier 3** | Processes & Pthreads | [`curriculum/tier3_system_programming_c/02_processes_and_threads.md`](curriculum/tier3_system_programming_c/02_processes_and_threads.md) |
-| **Tier 3** | High-Performance epoll | [`curriculum/tier3_system_programming_c/03_epoll_and_event_loops.md`](curriculum/tier3_system_programming_c/03_epoll_and_event_loops.md) |
-| **Tier 4** | Kernel Architecture | [`curriculum/tier4_kernel_programming/01_kernel_architecture_and_tour.md`](curriculum/tier4_kernel_programming/01_kernel_architecture_and_tour.md) |
-| **Tier 4** | Loadable Kernel Modules | [`curriculum/tier4_kernel_programming/02_loadable_kernel_modules.md`](curriculum/tier4_kernel_programming/02_loadable_kernel_modules.md) |
-| **Tier 4** | Character Device Drivers | [`curriculum/tier4_kernel_programming/03_character_device_drivers.md`](curriculum/tier4_kernel_programming/03_character_device_drivers.md) |
-| **Tier 4** | Kernel Concurrency & RCU | [`curriculum/tier4_kernel_programming/04_kernel_concurrency_and_rcu.md`](curriculum/tier4_kernel_programming/04_kernel_concurrency_and_rcu.md) |
-
----
-
-## 🏆 Mastery Badges System
-
-- 🔍 **Grep Grandmaster**: Solve all 15 core grep challenges
-- ✂️ **Sed Stream Surgeon**: Master stream editing across all 15 sed exercises
-- ⚗️ **Awk Alchemist**: Complete all 20 advanced field & aggregation challenges
-- 🧙‍♂️ **Text Processing Virtuoso**: Conquer all 50 text processing exercises + bonus combos
-- ⚡ **Syscall Sorcerer**: Write and verify Linux C System Programs
-- 🐧 **Kernel Subsystem Hacker**: Implement and verify Linux Kernel Driver Modules
 
 ---
 
@@ -151,23 +169,66 @@ make test
 
 ```
 ├── .gitignore
-├── README.md
-├── Makefile
+├── README.md                          # Comprehensive documentation
+├── Makefile                           # Global test and build orchestration
 ├── linux-mastery                      # Interactive CLI executable
-├── curriculum/                        # Comprehensive Markdown study series
-├── practice_data/                     # 5 sample files for grep, sed, awk exercises
+├── curriculum/                        # 536 Markdown chapters & roadmaps
+│   ├── volume_01_the_ultimate_edition/
+│   ├── volume_02_specialist_topics/
+│   ├── volume_03_practice_workbook/
+│   ├── volume_04_internals_and_architecture/
+│   ├── volume_05_operating_system_theory/
+│   ├── volume_06_installing_software/
+│   ├── volume_07_bash_configuration_and_scripting/
+│   ├── volume_08_kernel_development/
+│   ├── volume_09_kernel_deep_guide/
+│   ├── specialist_guides/
+│   ├── tlpi_systems_programming/
+│   └── kernel_subsystems_lkd_ulk3/
+├── practice_data/                     # Production log & CSV datasets
+│   ├── access.log
+│   ├── app.log
+│   ├── employees.csv
+│   ├── server.conf
+│   └── users.txt
 ├── code_examples/
-│   ├── 01_bash_scripts/               # Production bash administration scripts
-│   ├── 02_text_processing/            # Complete 50 grep/sed/awk solutions
+│   ├── 01_bash_scripts/               # Production bash scripts
+│   ├── 02_text_processing/            # Reference solutions
 │   ├── 03_system_programming/         # Compilable C syscall/epoll programs + Makefile
-│   └── 04_kernel_modules/             # Real LKMs + user-space mock simulator
-├── simulator/                         # Python grading engine, SQLite DB, CLI
-├── web/                               # Interactive Web Platform (HTML5/CSS3/Vanilla JS)
-└── tests/                             # Automated test suite (Python unittest + C Make)
+│   └── 04_kernel_modules/             # LKMs + user-space mock driver harness
+├── simulator/                         # Grading engine, SQLite DB, CLI logic
+│   ├── challenges.json                # 107 interactive challenges
+│   ├── commands_reference.json        # 55+ command reference dictionary
+│   └── interview_questions.json       # 8 technical interview deep questions
+├── web/                               # Web platform (Vanilla JS, CSS3, REST API)
+│   ├── server.py                      # Threaded HTTP server daemon
+│   └── static/                        # SPA interface (index.html, styles.css, app.js)
+└── tests/                             # Automated verification test suite
 ```
 
 ---
 
+## 🏆 Mastery Badges & Ranks
+
+### Ranks Progression:
+- **Terminal Initiate (L0)**: 0 - 19 Labs Completed
+- **Shell Journeyman (L1)**: 20 - 49 Labs Completed
+- **Systems Craftsman (L2)**: 50 - 79 Labs Completed
+- **Kernel Hacker (L3)**: 80 - 106 Labs Completed
+- **Grandmaster of Linux (L4)**: All 107 Labs Completed
+
+### Badges:
+- 🔍 **Grep Grandmaster**: Solve all 19 grep challenges.
+- ✂️ **Sed Stream Surgeon**: Master stream editing across all 19 sed exercises.
+- ⚗️ **Awk Alchemist**: Complete all 22 advanced field & aggregation challenges.
+- 🛡️ **TAMK Lab Veteran**: Complete all TAMK directory and archiving labs.
+- 🧙‍♂️ **Text Processing Virtuoso**: Conquer 60+ text processing exercises.
+- ⚡ **Syscall Sorcerer**: Write and verify Linux C System Programs.
+- 🐧 **Kernel Subsystem Hacker**: Implement and verify Linux Kernel Driver Modules.
+
+---
+
 ## 📜 Dedication & License
-Designed and engineered for **MD Abdur Rahim** as a permanent, production-ready operating system dojo.  
-Released under the MIT License.
+Designed and engineered for **MD Abdur Rahim** as a lifelong, comprehensive operating systems, systems engineering, and Linux kernel mastery platform.
+
+Released under the **MIT License**.

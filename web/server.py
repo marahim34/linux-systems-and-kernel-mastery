@@ -77,6 +77,25 @@ class DojoHTTPHandler(SimpleHTTPRequestHandler):
                 self._send_json({"error": "Not found"}, 404)
             return
 
+        
+        if url == "/api/commands":
+            c_file = os.path.join(PROJECT_ROOT, "simulator", "commands_reference.json")
+            if os.path.exists(c_file):
+                with open(c_file, "r") as f:
+                    self._send_json(json.load(f))
+            else:
+                self._send_json([])
+            return
+
+        if url == "/api/interviews":
+            i_file = os.path.join(PROJECT_ROOT, "simulator", "interview_questions.json")
+            if os.path.exists(i_file):
+                with open(i_file, "r") as f:
+                    self._send_json(json.load(f))
+            else:
+                self._send_json([])
+            return
+
         if url == "/api/practice-files":
             files_data = {}
             if os.path.exists(PRACTICE_DATA_DIR):
@@ -109,6 +128,10 @@ class DojoHTTPHandler(SimpleHTTPRequestHandler):
             else:
                 self._send_json({"error": "File not found"}, 404)
             return
+
+        # Rewrite /static/ prefix if present
+        if self.path.startswith("/static/"):
+            self.path = self.path[len("/static"):]
 
         # Fallback to static files
         super().do_GET()

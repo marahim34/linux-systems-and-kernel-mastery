@@ -1,0 +1,6 @@
+1. Drop a script here for daily execution — the zero-syntax option (also cron.hourly/weekly/monthly).
+2. anacron runs those directories and CATCHES UP missed runs after downtime — the reason laptop backups still
+happen. (systemd timers' Persistent=true is the modern equivalent.)
+3. at = run ONCE at a time: tonight's one-off maintenance...
+4. ...type the commands...
+5. ...end input. Also accepts: at now + 2 hours.

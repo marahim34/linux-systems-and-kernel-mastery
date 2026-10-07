@@ -1,0 +1,442 @@
+[
+  {
+    "cmd": "ls",
+    "category": "files",
+    "desc": "List directory contents",
+    "syntax": "ls [options] [path]",
+    "flags": "-l (long), -a (all/hidden), -h (human sizes), -t (sort by time), -R (recursive)",
+    "example": "ls -lah --sort=size"
+  },
+  {
+    "cmd": "cd",
+    "category": "files",
+    "desc": "Change working directory",
+    "syntax": "cd [dir]",
+    "flags": "cd - (previous dir), cd ~ (home), cd .. (parent)",
+    "example": "cd /var/log/nginx"
+  },
+  {
+    "cmd": "pwd",
+    "category": "files",
+    "desc": "Print working directory",
+    "syntax": "pwd [-P|-L]",
+    "flags": "-P (physical path resolving symlinks)",
+    "example": "pwd -P"
+  },
+  {
+    "cmd": "mkdir",
+    "category": "files",
+    "desc": "Create directories",
+    "syntax": "mkdir [options] dir...",
+    "flags": "-p (create parent directories without error)",
+    "example": "mkdir -p /opt/app/{src,bin,logs}"
+  },
+  {
+    "cmd": "rm",
+    "category": "files",
+    "desc": "Remove files or directories",
+    "syntax": "rm [options] file...",
+    "flags": "-r (recursive), -f (force/no prompt), -i (interactive)",
+    "example": "rm -rf /tmp/cache/*"
+  },
+  {
+    "cmd": "cp",
+    "category": "files",
+    "desc": "Copy files and directories",
+    "syntax": "cp [options] src dst",
+    "flags": "-r (recursive), -a (archive: preserves perms, timestamps, owners), -u (update)",
+    "example": "cp -a /etc/nginx /backup/nginx-conf"
+  },
+  {
+    "cmd": "mv",
+    "category": "files",
+    "desc": "Move or rename files",
+    "syntax": "mv [options] src dst",
+    "flags": "-i (prompt before overwrite), -n (no clobber), -u (update)",
+    "example": "mv server.conf.new server.conf"
+  },
+  {
+    "cmd": "touch",
+    "category": "files",
+    "desc": "Change timestamps or create empty file",
+    "syntax": "touch file...",
+    "flags": "-c (do not create file if missing), -d (custom date)",
+    "example": "touch .env.production"
+  },
+  {
+    "cmd": "ln",
+    "category": "files",
+    "desc": "Make links between files",
+    "syntax": "ln [options] target linkname",
+    "flags": "-s (symbolic soft link), -f (force overwrite)",
+    "example": "ln -s /etc/nginx/sites-available/app /etc/nginx/sites-enabled/"
+  },
+  {
+    "cmd": "find",
+    "category": "files",
+    "desc": "Search for files in directory hierarchy",
+    "syntax": "find [where] [criteria] [action]",
+    "flags": "-type f/d/l, -name, -mtime, -size, -perm, -exec",
+    "example": "find /var/log -type f -name \"*.log\" -mtime +7 -delete"
+  },
+  {
+    "cmd": "file",
+    "category": "files",
+    "desc": "Determine file type via magic bytes",
+    "syntax": "file [options] filename",
+    "flags": "-b (brief), -i (mime type)",
+    "example": "file /bin/bash /dev/sda"
+  },
+  {
+    "cmd": "stat",
+    "category": "files",
+    "desc": "Display file or filesystem status",
+    "syntax": "stat [options] filename",
+    "flags": "-c (custom format: %a permissions, %s size, %i inode)",
+    "example": "stat -c \"%a %n (inode: %i)\" /etc/passwd"
+  },
+  {
+    "cmd": "cat",
+    "category": "text",
+    "desc": "Concatenate and print files",
+    "syntax": "cat [options] [file...]",
+    "flags": "-n (number all lines), -b (number non-blank lines)",
+    "example": "cat -n server.conf"
+  },
+  {
+    "cmd": "less",
+    "category": "text",
+    "desc": "Interactive file pager",
+    "syntax": "less [options] filename",
+    "flags": "-N (line numbers), -F (quit if one screen), / (search)",
+    "example": "less +F /var/log/syslog"
+  },
+  {
+    "cmd": "head",
+    "category": "text",
+    "desc": "Output first part of files",
+    "syntax": "head -n [lines] file",
+    "flags": "-n 20 (first 20 lines)",
+    "example": "head -n 5 /etc/passwd"
+  },
+  {
+    "cmd": "tail",
+    "category": "text",
+    "desc": "Output last part of files",
+    "syntax": "tail [options] file",
+    "flags": "-n [num], -f (follow live stream), -F (follow across log rotation)",
+    "example": "tail -Fn 50 /var/log/nginx/access.log"
+  },
+  {
+    "cmd": "grep",
+    "category": "text",
+    "desc": "Print lines matching pattern",
+    "syntax": "grep [options] PATTERN [file...]",
+    "flags": "-i (ignore case), -v (invert), -c (count), -n (line num), -E (ERE regex), -o (only match), -r (recursive)",
+    "example": "grep -rnE \"(ERROR|CRITICAL)\" /var/log/apps/"
+  },
+  {
+    "cmd": "sed",
+    "category": "text",
+    "desc": "Stream editor for filtering and transforming text",
+    "syntax": "sed [options] 'script' [input]",
+    "flags": "-i (in-place edit), -E (extended regex), -n (suppress auto-print)",
+    "example": "sed -i.bak 's/port 8080/port 9090/g' server.conf"
+  },
+  {
+    "cmd": "awk",
+    "category": "text",
+    "desc": "Pattern scanning and processing language",
+    "syntax": "awk [options] 'pattern {action}' [file]",
+    "flags": "-F [delim] (field separator), -v var=val (set variable)",
+    "example": "awk -F: '$3>=1000 {print $1, $3}' /etc/passwd"
+  },
+  {
+    "cmd": "cut",
+    "category": "text",
+    "desc": "Remove sections from each line of files",
+    "syntax": "cut -d[delim] -f[fields]",
+    "flags": "-d (delimiter), -f (field numbers)",
+    "example": "cut -d: -f1,7 /etc/passwd"
+  },
+  {
+    "cmd": "sort",
+    "category": "text",
+    "desc": "Sort lines of text files",
+    "syntax": "sort [options] [file...]",
+    "flags": "-n (numeric), -r (reverse), -k (key column), -t (field separator), -u (unique)",
+    "example": "sort -t: -k3,3n /etc/passwd"
+  },
+  {
+    "cmd": "uniq",
+    "category": "text",
+    "desc": "Report or omit repeated lines",
+    "syntax": "uniq [options] [input]",
+    "flags": "-c (prefix count), -d (only duplicate lines), -u (only unique lines)",
+    "example": "awk '{print $1}' access.log | sort | uniq -c | sort -rn"
+  },
+  {
+    "cmd": "tr",
+    "category": "text",
+    "desc": "Translate or delete characters",
+    "syntax": "tr [options] SET1 [SET2]",
+    "flags": "-d (delete), -s (squeeze repeats)",
+    "example": "cat input.txt | tr 'a-z' 'A-Z'"
+  },
+  {
+    "cmd": "wc",
+    "category": "text",
+    "desc": "Print newline, word, and byte counts",
+    "syntax": "wc [options] [file...]",
+    "flags": "-l (lines), -w (words), -c (bytes), -m (chars)",
+    "example": "wc -l < /etc/passwd"
+  },
+  {
+    "cmd": "ps",
+    "category": "process",
+    "desc": "Report current process snapshot",
+    "syntax": "ps [options]",
+    "flags": "aux (all users, BSD style), -ef (standard syntax), -eo pid,user,%cpu,%mem,comm",
+    "example": "ps -eo pid,user,%cpu,%mem,comm --sort=-%cpu | head -10"
+  },
+  {
+    "cmd": "top / htop",
+    "category": "process",
+    "desc": "Dynamic real-time process viewer",
+    "syntax": "htop",
+    "flags": "P (sort by CPU), M (sort by MEM), k (kill process)",
+    "example": "top -b -n 1 | head -20"
+  },
+  {
+    "cmd": "kill",
+    "category": "process",
+    "desc": "Send signal to process",
+    "syntax": "kill -SIGNAL PID",
+    "flags": "-15 (SIGTERM: graceful), -9 (SIGKILL: uncatchable), -1 (SIGHUP: reload config)",
+    "example": "kill -TERM 1420"
+  },
+  {
+    "cmd": "killall",
+    "category": "process",
+    "desc": "Kill processes by name",
+    "syntax": "killall [options] name",
+    "flags": "-w (wait for processes to die)",
+    "example": "killall -9 nginx"
+  },
+  {
+    "cmd": "pkill / pgrep",
+    "category": "process",
+    "desc": "Signal or list processes based on name and attributes",
+    "syntax": "pgrep [options] pattern",
+    "flags": "-u [user], -f (full commandline match)",
+    "example": "pgrep -l -u root sshd"
+  },
+  {
+    "cmd": "systemctl",
+    "category": "process",
+    "desc": "Control the systemd system and service manager",
+    "syntax": "systemctl [command] [unit]",
+    "flags": "start, stop, restart, reload, status, enable, disable, daemon-reload",
+    "example": "systemctl enable --now docker.service"
+  },
+  {
+    "cmd": "journalctl",
+    "category": "process",
+    "desc": "Query the systemd journal",
+    "syntax": "journalctl [options]",
+    "flags": "-u [unit], -f (follow live), -b (current boot), -p err (filter by priority)",
+    "example": "journalctl -u nginx.service -f --since \"1 hour ago\""
+  },
+  {
+    "cmd": "lsof",
+    "category": "process",
+    "desc": "List open files and network sockets",
+    "syntax": "lsof [options]",
+    "flags": "-i :[port] (filter by port), -p [pid], +D [dir] (files open in dir)",
+    "example": "lsof -i :8080 -sTCP:LISTEN"
+  },
+  {
+    "cmd": "strace",
+    "category": "process",
+    "desc": "Trace system calls and signals",
+    "syntax": "strace [options] command",
+    "flags": "-p [pid] (attach), -e trace=[syscalls], -c (summary count), -f (follow forks)",
+    "example": "strace -e openat,read,write -p 1234"
+  },
+  {
+    "cmd": "useradd",
+    "category": "security",
+    "desc": "Create a new user account",
+    "syntax": "useradd [options] username",
+    "flags": "-m (create home), -s (login shell), -G (supplementary groups)",
+    "example": "useradd -m -s /bin/bash -G sudo,docker devuser"
+  },
+  {
+    "cmd": "usermod",
+    "category": "security",
+    "desc": "Modify a user account",
+    "syntax": "usermod [options] username",
+    "flags": "-aG (append supplementary group), -s (change shell), -L (lock account)",
+    "example": "usermod -aG sudo aisha"
+  },
+  {
+    "cmd": "userdel",
+    "category": "security",
+    "desc": "Delete a user account",
+    "syntax": "userdel [-r] username",
+    "flags": "-r (remove home directory and mail spool)",
+    "example": "userdel -r tempuser"
+  },
+  {
+    "cmd": "passwd",
+    "category": "security",
+    "desc": "Change user password",
+    "syntax": "passwd [username]",
+    "flags": "-l (lock), -u (unlock), -e (force expire)",
+    "example": "passwd devuser"
+  },
+  {
+    "cmd": "chown",
+    "category": "security",
+    "desc": "Change file owner and group",
+    "syntax": "chown [options] user[:group] file...",
+    "flags": "-R (recursive)",
+    "example": "chown -R www-data:www-data /var/www/html"
+  },
+  {
+    "cmd": "chmod",
+    "category": "security",
+    "desc": "Change file access permissions",
+    "syntax": "chmod [options] mode file...",
+    "flags": "-R (recursive), 755 / 644 / u+x",
+    "example": "chmod 600 ~/.ssh/id_ed25519"
+  },
+  {
+    "cmd": "chage",
+    "category": "security",
+    "desc": "Change user password expiry information",
+    "syntax": "chage [options] username",
+    "flags": "-l (list aging info), -M (max days), -W (warning days)",
+    "example": "chage -l aisha"
+  },
+  {
+    "cmd": "sudo",
+    "category": "security",
+    "desc": "Execute a command as another user (typically superuser)",
+    "syntax": "sudo [options] command",
+    "flags": "-u (as user), -i (login shell), -l (list privileges)",
+    "example": "sudo -u postgres psql"
+  },
+  {
+    "cmd": "ip",
+    "category": "network",
+    "desc": "Show / manipulate routing, network devices, interfaces and tunnels",
+    "syntax": "ip [object] [command]",
+    "flags": "addr (show IP), route (show routing table), link (show interfaces)",
+    "example": "ip -br addr show"
+  },
+  {
+    "cmd": "ss",
+    "category": "network",
+    "desc": "Investigate sockets (modern replacement for netstat)",
+    "syntax": "ss [options]",
+    "flags": "-t (tcp), -u (udp), -l (listening), -p (process info), -n (numeric ports)",
+    "example": "ss -tulpn"
+  },
+  {
+    "cmd": "ping",
+    "category": "network",
+    "desc": "Send ICMP ECHO_REQUEST to network hosts",
+    "syntax": "ping [options] destination",
+    "flags": "-c [count], -i [interval], -W [timeout]",
+    "example": "ping -c 4 8.8.8.8"
+  },
+  {
+    "cmd": "curl",
+    "category": "network",
+    "desc": "Transfer data from or to a server",
+    "syntax": "curl [options] [URL...]",
+    "flags": "-I (headers only), -s (silent), -L (follow redirects), -X (HTTP method), -d (body)",
+    "example": "curl -sI https://api.github.com | head -5"
+  },
+  {
+    "cmd": "dig",
+    "category": "network",
+    "desc": "DNS lookup utility",
+    "syntax": "dig [@server] name [type]",
+    "flags": "+short (concise answer), +trace (full delegation path)",
+    "example": "dig +short github.com A"
+  },
+  {
+    "cmd": "nc / netcat",
+    "category": "network",
+    "desc": "Arbitrary TCP and UDP connections and listens",
+    "syntax": "nc [options] host port",
+    "flags": "-z (port scan/zero I/O), -v (verbose), -l (listen mode)",
+    "example": "nc -zv 127.0.0.1 8080"
+  },
+  {
+    "cmd": "df",
+    "category": "storage",
+    "desc": "Report file system disk space usage",
+    "syntax": "df [options] [file...]",
+    "flags": "-h (human readable), -T (print filesystem type), -x tmpfs",
+    "example": "df -hT -x tmpfs"
+  },
+  {
+    "cmd": "du",
+    "category": "storage",
+    "desc": "Estimate file space usage",
+    "syntax": "du [options] [path...]",
+    "flags": "-s (summary), -h (human readable), -d [depth]",
+    "example": "du -sh /var/log/* | sort -hr | head -10"
+  },
+  {
+    "cmd": "lsblk",
+    "category": "storage",
+    "desc": "List information about block devices",
+    "syntax": "lsblk [options]",
+    "flags": "-f (filesystem info), -m (permissions), -p (full path)",
+    "example": "lsblk -f"
+  },
+  {
+    "cmd": "uname",
+    "category": "kernel",
+    "desc": "Print system information",
+    "syntax": "uname [options]",
+    "flags": "-r (kernel release), -m (hardware machine), -a (all info)",
+    "example": "uname -a"
+  },
+  {
+    "cmd": "dmesg",
+    "category": "kernel",
+    "desc": "Print or control the kernel ring buffer",
+    "syntax": "dmesg [options]",
+    "flags": "-T (human timestamps), -l [level] (filter err,warn,info), -w (follow)",
+    "example": "dmesg -T -l err,warn | tail -20"
+  },
+  {
+    "cmd": "lsmod",
+    "category": "kernel",
+    "desc": "Show the status of modules in the Linux Kernel",
+    "syntax": "lsmod",
+    "flags": "Reads from /proc/modules",
+    "example": "lsmod | grep kvm"
+  },
+  {
+    "cmd": "insmod / rmmod",
+    "category": "kernel",
+    "desc": "Insert or remove a module from Linux Kernel",
+    "syntax": "insmod file.ko / rmmod modname",
+    "flags": "Direct syscalls init_module / delete_module",
+    "example": "sudo insmod char_dev.ko"
+  },
+  {
+    "cmd": "modinfo",
+    "category": "kernel",
+    "desc": "Show information about a Linux Kernel module",
+    "syntax": "modinfo [options] filename",
+    "flags": "-p (parameters), -a (author), -d (description)",
+    "example": "modinfo e1000e"
+  }
+]
