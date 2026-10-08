@@ -6,7 +6,11 @@ import os
 import json
 from datetime import datetime
 
-DEFAULT_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "simulator", "progress.db")
+# In Vercel / AWS Lambda environments, use /tmp for write access
+if os.environ.get("VERCEL") or os.environ.get("AWS_LAMBDA_FUNCTION_NAME"):
+    DEFAULT_DB_PATH = "/tmp/progress.db"
+else:
+    DEFAULT_DB_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "simulator", "progress.db")
 
 class ProgressDB:
     def __init__(self, db_path=DEFAULT_DB_PATH):
@@ -20,20 +24,21 @@ class ProgressDB:
         return sqlite3.connect(self.db_path)
 
     def _init_db(self):
-        if self.db_path != ":memory:" and os.path.dirname(self.db_path):
-            os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
-        with self._get_conn() as conn:
-            cursor = conn.cursor()
-            cursor.execute("""
-            CREATE TABLE IF NOT EXISTS completed_challenges (
-                challenge_id TEXT PRIMARY KEY,
-                tier TEXT,
-                category TEXT,
-                completed_at TIMESTAMP,
-                attempts INTEGER DEFAULT 1,
-                user_solution TEXT
-            )
-            """)
+        try:
+            if self.db_path != ":memory:" and os.path.dirname(self.db_path):
+                os.makedirs(os.path.dirname(self.db_path), exist_ok=True)
+            with self._get_conn() as conn:
+                cursor = conn.cursor()
+                cursor.execute("""
+                CREATE TABLE IF NOT EXISTS completed_challenges (
+                    challenge_id TEXT PRIMARY KEY,
+                    tier TEXT,
+                    category TEXT,
+                    completed_at TIMESTAMP,
+                    attempts INTEGER DEFAULT 1,
+                    user_solution TEXT
+                )
+                """)
             cursor.execute("""
             CREATE TABLE IF NOT EXISTS execution_logs (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -53,6 +58,43 @@ class ProgressDB:
             )
             """)
             conn.commit()
+        except (sqlite3.OperationalError, PermissionError, OSError):
+            self.db_path = "/tmp/progress.db"
+            try:
+                with sqlite3.connect(self.db_path) as conn:
+                    cursor = conn.cursor()
+                    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS completed_challenges (
+                        challenge_id TEXT PRIMARY KEY,
+                        tier TEXT,
+                        category TEXT,
+                        completed_at TIMESTAMP,
+                        attempts INTEGER DEFAULT 1,
+                        user_solution TEXT
+                    )
+                    """)
+                    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS execution_logs (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        challenge_id TEXT,
+                        command TEXT,
+                        passed INTEGER,
+                        output TEXT,
+                        executed_at TIMESTAMP
+                    )
+                    """)
+                    cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS user_badges (
+                        badge_key TEXT PRIMARY KEY,
+                        name TEXT,
+                        description TEXT,
+                        awarded_at TIMESTAMP
+                    )
+                    """)
+                    conn.commit()
+            except Exception:
+                self._shared_conn = sqlite3.connect(":memory:")
+                self.db_path = ":memory:"
 
     def record_attempt(self, challenge_id, tier, category, command, passed, output):
         with self._get_conn() as conn:

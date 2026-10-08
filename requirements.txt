@@ -1,0 +1,2 @@
+# Linux Mastery Platform - Zero External Dependencies
+# Uses Python standard library only (http.server, sqlite3, subprocess, json, os, sys)

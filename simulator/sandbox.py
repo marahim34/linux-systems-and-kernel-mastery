@@ -25,7 +25,10 @@ class Sandbox:
         # Symlink code_examples so C and Kernel challenges can compile code
         code_ex = os.path.join(PROJECT_ROOT, "code_examples")
         if os.path.exists(code_ex):
-            os.symlink(code_ex, os.path.join(self.temp_dir, "code_examples"))
+            try:
+                os.symlink(code_ex, os.path.join(self.temp_dir, "code_examples"))
+            except OSError:
+                pass
 
     def run_bash(self, command, timeout=10):
         try:
@@ -68,12 +71,20 @@ class Sandbox:
             flags.extend(extra_flags)
 
         compile_cmd = ["gcc"] + flags + [c_file, "-o", bin_file]
-        comp_res = subprocess.run(compile_cmd, cwd=self.temp_dir, capture_output=True, text=True)
-        if comp_res.returncode != 0:
+        try:
+            comp_res = subprocess.run(compile_cmd, cwd=self.temp_dir, capture_output=True, text=True)
+            if comp_res.returncode != 0:
+                return {
+                    "stdout": "",
+                    "stderr": "Compilation Error:\n" + comp_res.stderr,
+                    "returncode": comp_res.returncode,
+                    "compiled": False
+                }
+        except FileNotFoundError:
             return {
                 "stdout": "",
-                "stderr": "Compilation Error:\n" + comp_res.stderr,
-                "returncode": comp_res.returncode,
+                "stderr": "Note: GCC compiler is not available in cloud serverless environment. Run locally on Linux via './linux-mastery' for full C and Kernel compilation.",
+                "returncode": 1,
                 "compiled": False
             }
 

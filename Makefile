@@ -1,9 +1,12 @@
 # Top-level Makefile for Linux Mastery Platform
 # Controls compilation, test suites, kernel simulator, and web server
 
-.PHONY: all clean test web status run-kernel
+.PHONY: all clean test web status run-kernel vercel-build
 
 PYTHON ?= python3
+
+vercel-build:
+	@echo "Vercel build complete: Frontend static files in public/, API in api/index.py"
 
 all:
 	@echo "=== Building C System Programming Examples ==="

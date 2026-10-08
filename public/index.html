@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linux Mastery Platform · Zero to Kernel Hacker</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="app-container">
+    <!-- TOP NAVIGATION BAR -->
+    <header class="top-nav">
+      <div class="brand">
+        <div class="brand-icon">🐧</div>
+        <div class="brand-text">
+          <span class="brand-title">LINUX MASTERY UNIVERSITY</span>
+          <span class="brand-subtitle">THE DEFINITIVE 9-VOLUME SYSTEMS & KERNEL DOJO</span>
+        </div>
+      </div>
+
+      <div class="user-stats" id="user-stats-bar">
+        <div class="stat-pill">
+          <span class="pill-label">RANK</span>
+          <span class="pill-value rank-text" id="stat-rank">Terminal Initiate (L0)</span>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">LABS COMPLETED</span>
+          <span class="pill-value" id="stat-completed">0 / 107</span>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">CHAPTERS</span>
+          <span class="pill-value" style="color: var(--accent-blue);">536 Guides</span>
+        </div>
+        <div class="stat-pill">
+          <span class="pill-label">BADGES</span>
+          <span class="pill-value badge-count" id="stat-badges">0 🏆</span>
+        </div>
+        <button class="btn btn-secondary btn-sm" id="btn-reset-progress">Reset</button>
+      </div>
+    </header>
+
+    <!-- MAIN APP LAYOUT -->
+    <div class="main-layout">
+      <!-- SIDEBAR TABS -->
+      <aside class="sidebar">
+        <div class="nav-section-title">LEARNING MODULES</div>
+        <nav class="nav-menu">
+          <button class="nav-item active" data-tab="curriculum">
+            <span class="icon">📚</span> 9-Volume Library (536)
+          </button>
+          <button class="nav-item" data-tab="challenges">
+            <span class="icon">🎯</span> Practice Dojo (107 Labs)
+          </button>
+          <button class="nav-item" data-tab="commands">
+            <span class="icon">📖</span> Command Reference
+          </button>
+          <button class="nav-item" data-tab="interviews">
+            <span class="icon">🧠</span> Interview Questions
+          </button>
+          <button class="nav-item" data-tab="architecture">
+            <span class="icon">🏗️</span> Kernel & OS Architecture
+          </button>
+          <button class="nav-item" data-tab="sandbox">
+            <span class="icon">⚡</span> Live Terminal Sandbox
+          </button>
+          <button class="nav-item" data-tab="datasets">
+            <span class="icon">📁</span> Practice Datasets
+          </button>
+          <button class="nav-item" data-tab="kernel">
+            <span class="icon">⚙️</span> Kernel Driver Harness
+          </button>
+          <button class="nav-item" data-tab="badges">
+            <span class="icon">🏆</span> Badges & Mastery
+          </button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <div class="footer-title">STUDY SERIES 2026</div>
+          <div class="footer-author">Prepared for MD Abdur Rahim</div>
+          <div class="footer-status"><span class="status-dot"></span> Kernel 7.0.0 Online</div>
+        </div>
+      </aside>
+
+      <!-- CONTENT PANELS -->
+      <main class="content-panel">
+
+        <!-- TAB 1: CURRICULUM LIBRARY -->
+        <section id="tab-curriculum" class="tab-pane active">
+          <div class="curriculum-container">
+            <div class="curriculum-sidebar">
+              <div class="curriculum-search-box">
+                <input type="text" id="curriculum-search" placeholder="Search 536 chapters & topics..." autocomplete="off" />
+              </div>
+              <div id="curriculum-tree" class="curriculum-tree">
+                <!-- Dynamically populated hierarchical volume tree -->
+              </div>
+            </div>
+            <div class="curriculum-viewer" id="curriculum-viewer">
+              <div class="markdown-body" id="curriculum-content">
+                <h2>Welcome to the Linux Mastery Complete Library</h2>
+                <p>This knowledge engine contains <strong>all nine volumes</strong> prepared for MD Abdur Rahim, alongside Michael Kerrisk's <em>The Linux Programming Interface (TLPI)</em> and Robert Love's <em>Linux Kernel Development (LKD)</em>.</p>
+                <div class="hero-grid">
+                  <div class="hero-card" onclick="loadCurriculumFile('volume_01_the_ultimate_edition/00_complete_volume.md')">
+                    <h3>Vol 1: The Ultimate Edition</h3>
+                    <p>The complete 25-chapter core: terminal, filesystem, processes, networking, scripting, security, and capstone deployment.</p>
+                  </div>
+                  <div class="hero-card" onclick="loadCurriculumFile('volume_03_practice_workbook/00_complete_volume.md')">
+                    <h3>Vol 3: The Practice Workbook</h3>
+                    <p>60 worked TAMK exercises with solutions: Vim, files, globbing, redirections, archiving, and text tools.</p>
+                  </div>
+                  <div class="hero-card" onclick="loadCurriculumFile('volume_04_internals_and_architecture/00_complete_volume.md')">
+                    <h3>Vol 4: Internals & Architecture</h3>
+                    <p>How Linux really works: kernel architecture, CPU scheduler CFS, memory paging, VFS inodes, and syscalls.</p>
+                  </div>
+                  <div class="hero-card" onclick="loadCurriculumFile('volume_08_kernel_development/00_complete_volume.md')">
+                    <h3>Vol 8 & 9: Kernel Development</h3>
+                    <p>Writing loadable kernel modules, character drivers, copy_to_user, concurrency, RCU, workqueues, and device model.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 2: PRACTICE CHALLENGES -->
+        <section id="tab-challenges" class="tab-pane">
+          <div class="split-pane">
+            <div class="pane-sidebar">
+              <div class="pane-header">
+                <h3>PRACTICE DOJO (107 LABS)</h3>
+                <div class="filter-group">
+                  <select id="filter-tier" class="form-select">
+                    <option value="">All Tiers</option>
+                    <option value="tier1">Tier 1: Bash & Text</option>
+                    <option value="tier2">Tier 2: Administration</option>
+                    <option value="tier3">Tier 3: C Systems</option>
+                    <option value="tier4">Tier 4: Kernel Dev</option>
+                  </select>
+                  <select id="filter-cat" class="form-select">
+                    <option value="">All Categories</option>
+                    <option value="grep">Grep (19)</option>
+                    <option value="sed">Sed (19)</option>
+                    <option value="awk">Awk (22)</option>
+                    <option value="core">Core & TAMK (20)</option>
+                    <option value="sorting">Sorting (7)</option>
+                    <option value="c_systems">C Systems (11)</option>
+                    <option value="kernel">Kernel Drivers (6)</option>
+                  </select>
+                </div>
+              </div>
+              <div class="challenge-list" id="challenge-list">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="pane-main">
+              <div id="challenge-detail" class="challenge-workspace">
+                <div class="empty-state">
+                  <div class="empty-icon">👈</div>
+                  <h3>Select a challenge to begin</h3>
+                  <p>Choose any of the 107 interactive challenges to view instructions and start coding.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 3: COMMAND REFERENCE -->
+        <section id="tab-commands" class="tab-pane">
+          <div class="cmd-ref-container">
+            <div class="cmd-ref-header">
+              <h2>📖 Comprehensive Linux Command Reference</h2>
+              <input type="text" id="cmd-search-input" placeholder="Search commands (e.g. grep, sed, lsof, systemctl, strace)..." />
+            </div>
+            <div class="cmd-cards-grid" id="cmd-cards-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 4: INTERVIEW QUESTIONS -->
+        <section id="tab-interviews" class="tab-pane">
+          <div class="interviews-container">
+            <h2>🧠 Linux Technical Interview Preparation Dojo</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 20px;">Master technical interview questions spanning system calls, kernel paging, concurrency, and production debugging.</p>
+            <div class="interview-list" id="interview-list">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 5: ARCHITECTURE VISUALIZER -->
+        <section id="tab-architecture" class="tab-pane">
+          <div class="arch-container">
+            <h2>🏗️ Linux Kernel & Operating System Architecture Visualizer</h2>
+            
+            <div class="arch-card">
+              <h3>1. The System Call Boundary (User Space to Kernel Space)</h3>
+              <div class="diagram-box">
+┌────────────────────────────────────────────────────────────────────────┐
+│ USER SPACE (Ring 3 - Unprivileged)                                     │
+│  User Application -> glibc wrapper: write(fd, buf, count)              │
+│  Registers Setup: %rax=1 (sys_write), %rdi=fd, %rsi=buf, %rdx=count    │
+│  CPU Instruction: 'syscall'                                            │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    │ CPU Mode Switch (Ring 3 -> Ring 0)
+┌───────────────────────────────────▼────────────────────────────────────┐
+│ KERNEL SPACE (Ring 0 - Privileged)                                     │
+│  Syscall Dispatcher: sys_call_table[%rax]                              │
+│  sys_write() -> VFS: vfs_write(file, buf, count, pos)                  │
+│  Device / Filesystem Driver -> Page Cache / Hardware Controller        │
+│  CPU Instruction: 'sysret' -> Mode Switch back to Ring 3               │
+└────────────────────────────────────────────────────────────────────────┘
+              </div>
+            </div>
+
+            <div class="arch-card">
+              <h3>2. Virtual Memory Architecture (x86_64 48-bit Canonical Addressing)</h3>
+              <div class="diagram-box">
+0xFFFFFFFFFFFFFFFF ┌─────────────────────────────────────────────────────┐
+                   │ Kernel Space (Top 128 TB - Shared Across Processes) │
+                   │  Direct Physical Map, vmalloc, Modules, BPF, text   │
+0xFFFF800000000000 ├─────────────────────────────────────────────────────┤
+                   │ Non-Canonical Memory Hole (Unmapped Gap)            │
+0x00007FFFFFFFFFFF ├─────────────────────────────────────────────────────┤
+                   │ User Space (Bottom 128 TB - Private per Process)    │
+                   │  [Stack (Grows Downward)]                           │
+                   │  [Memory Mappings / Shared Libraries (mmap)]        │
+                   │  [Heap (Grows Upward via brk / sbrk)]               │
+                   │  [BSS (Uninitialized Globals)]                      │
+                   │  [Data (Initialized Globals)]                       │
+                   │  [Text (Read-Only Machine Instructions)]            │
+0x0000000000000000 └─────────────────────────────────────────────────────┘
+              </div>
+            </div>
+
+            <div class="arch-card">
+              <h3>3. Virtual Filesystem (VFS) Object Model</h3>
+              <div class="diagram-box">
+┌────────────────────┐          ┌────────────────────┐
+│ struct super_block │ ◄─────── │  Mounted Filesystem│ (ext4, xfs, nfs, btrfs)
+└─────────┬──────────┘          └────────────────────┘
+          │
+          ▼
+┌────────────────────┐          ┌────────────────────┐
+│    struct inode    │ ◄─────── │ File Metadata      │ (Size, permissions, timestamps, data blocks)
+└─────────▲──────────┘          └────────────────────┘
+          │
+          ▼
+┌────────────────────┐          ┌────────────────────┐
+│    struct dentry   │ ◄─────── │ Directory Entry    │ (File name string -> inode mapping, dcache)
+└─────────▲──────────┘          └────────────────────┘
+          │
+          ▼
+┌────────────────────┐          ┌────────────────────┐
+│    struct file     │ ◄─────── │ Open File Instance │ (Per-process current offset f_pos, flags, f_ops)
+└────────────────────┘          └────────────────────┘
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 6: LIVE SANDBOX TERMINAL -->
+        <section id="tab-sandbox" class="tab-pane">
+          <div class="terminal-container">
+            <div class="terminal-header">
+              <div class="term-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="term-title">sandbox@linux-mastery:~ (Real Isolated Bash Environment)</div>
+            </div>
+            <div class="sandbox-controls">
+              <div class="input-row">
+                <span class="prompt-prefix">$</span>
+                <input type="text" id="sandbox-cmd-input" placeholder="Type bash command (e.g. ls -la, awk -F, '{print $2}' employees.csv, cat server.conf)..." autocomplete="off" />
+                <button class="btn btn-primary" id="btn-run-sandbox">Execute</button>
+              </div>
+            </div>
+            <div class="terminal-body" id="sandbox-terminal-out">
+Welcome to the Linux Mastery Sandbox!
+All practice datasets (access.log, app.log, employees.csv, server.conf, users.txt, data.txt, names.txt) are pre-loaded in this directory.
+Try running:
+  $ cat employees.csv
+  $ grep ERROR app.log
+  $ awk -F, 'NR>1 {sum+=$4} END {print sum/NR}' employees.csv
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 7: PRACTICE DATASETS -->
+        <section id="tab-datasets" class="tab-pane">
+          <div class="datasets-container">
+            <div class="dataset-tabs" id="dataset-tabs">
+              <!-- Tabs for files -->
+            </div>
+            <div class="dataset-viewer">
+              <div class="dataset-meta" id="dataset-meta"></div>
+              <pre class="dataset-code" id="dataset-content"></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 8: KERNEL HARNESS -->
+        <section id="tab-kernel" class="tab-pane">
+          <div class="kernel-dojo-container">
+            <div class="kernel-card">
+              <h2>⚙️ Linux Kernel Subsystem Simulator (Safe User-Space Harness)</h2>
+              <p>Practice writing and testing Loadable Kernel Modules (LKMs), character device drivers, and user-kernel memory copies safely without needing root privileges or risking system freezes.</p>
+              
+              <div class="kernel-actions">
+                <button class="btn btn-primary" id="btn-run-kernel-sim">Run Kernel Simulator Test</button>
+                <button class="btn btn-secondary" id="btn-build-sysprog">Build & Test C System Programming Suite</button>
+              </div>
+
+              <div class="terminal-container" style="margin-top: 20px;">
+                <div class="terminal-header">
+                  <div class="term-dots">
+                    <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+                  </div>
+                  <div class="term-title">dmesg & Kernel Simulator Output</div>
+                </div>
+                <div class="terminal-body" id="kernel-console-out">
+Ready to run kernel simulation. Click "Run Kernel Simulator Test" to execute.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- TAB 9: BADGES & MASTERY -->
+        <section id="tab-badges" class="tab-pane">
+          <div class="badges-container">
+            <h2>🏆 Mastery Achievements & Badges</h2>
+            <div class="badges-grid" id="badges-grid">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
